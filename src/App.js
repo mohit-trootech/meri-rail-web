@@ -13,6 +13,7 @@ import UtilsProvider from "./providers/UtilsProvider";
 import Home from "./apps/home/Home";
 import AuthLogin from "./apps/auth/AuthLogin";
 import AuthRegister from "./apps/auth/AuthRegister";
+import PnrStatus from "./apps/pnr_status/PnrStatus";
 function App() {
   return (
     <BrowserRouter>
@@ -21,9 +22,12 @@ function App() {
           <AuthProvider>
             <ToastContainer draggablePercent={60} draggable stacked />
             <Routes>
-              <Route path="/" element={<Home />} />
+              {/* Auth Routes */}
               <Route path="/auth/login/" element={<AuthLogin />} />
               <Route path="/auth/register/" element={<AuthRegister />} />
+              {/* App Routes*/}
+              <Route path="/" element={<Home />} />
+              <Route path="pnr-status/" element={<PnrStatus />} />
             </Routes>
           </AuthProvider>
         </UtilsProvider>

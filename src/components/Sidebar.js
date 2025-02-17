@@ -12,7 +12,7 @@ const Sidebar = () => {
   const { theme, updateTheme } = useContext(ThemeContext);
   return (
     <>
-      <div className="h-screen bg-base-200 w-11/12 overflow-y-auto shadow-xl flex flex-col justify-between align-center">
+      <div className="h-screen bg-base-200 overflow-y-auto shadow-xl flex flex-col justify-between align-center">
         <div>
           <header className="p-4 pb-0 flex justify-between items-center gap-x-2">
             <Link className="text-xl font-bold" to="/" aria-label="Brand">
@@ -27,20 +27,20 @@ const Sidebar = () => {
             </select>
           </header>
           <div className="divider mt-0"></div>
-          <ul className="menu bg-base-200 w-56 rounded-box">
-            <li>
+          <ul className="menu bg-base-200 rounded-box gap-3">
+            <li className="bg-base-100 rounded-lg">
               <NavLink to="/">
                 <FaHouseChimney />
                 Home
               </NavLink>
             </li>
-            <li>
-              <NavLink to="/pnr-status/">
+            <li className="bg-base-100 rounded-lg">
+              <NavLink exact to="/pnr-status">
                 <FaTrainSubway />
                 PNR Status
               </NavLink>
             </li>
-            <li>
+            <li className="bg-base-100 rounded-lg">
               <NavLink to="/tbis/">
                 <FaArrowsTurnToDots />
                 Trains Between Statios
