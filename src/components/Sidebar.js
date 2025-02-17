@@ -1,11 +1,15 @@
 import { Link, NavLink } from "react-router-dom";
+import { useContext } from "react";
 import {
   FaHouseChimney,
   FaTrainSubway,
   FaArrowsTurnToDots,
 } from "react-icons/fa6";
 import profile from "../static/img/profile.jpg";
+import ThemeOptions from "./ThemeOptions";
+import { ThemeContext } from "../context/Context";
 const Sidebar = () => {
+  const { theme, updateTheme } = useContext(ThemeContext);
   return (
     <>
       <div class="h-screen bg-base-200 w-11/12 overflow-y-auto shadow-xl flex flex-col justify-between align-center">
@@ -14,6 +18,13 @@ const Sidebar = () => {
             <Link class="text-xl font-bold" to="/" aria-label="Brand">
               Meri Rail
             </Link>
+            <select
+              className="select select-xs select-bordered"
+              onChange={updateTheme}
+              defaultValue={theme}
+            >
+              <ThemeOptions theme={theme} />
+            </select>
           </header>
           <div class="divider mt-0"></div>
           <ul className="menu bg-base-200 w-56 rounded-box">
