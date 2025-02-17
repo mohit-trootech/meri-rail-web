@@ -18,8 +18,8 @@ export const IGNORE_URL_PATHS = [
   "/unauthorized/",
 ];
 
-export const BaseUrlPath = "http://127.0.0.1:8000";
-export const urlLogin = "http://127.0.0.1:8000/accounts/login/";
+export const BaseUrlPath = "http://127.0.0.1:8000/";
+export const urlLogin = "http://127.0.0.1:8000/api/login/";
 export const urlForgotPassword =
   "http://127.0.0.1:8000/accounts/forgot-password/";
 export const urlForgotPasswordOtpSubmit =
@@ -41,3 +41,11 @@ export const MONTHS = [
   "November",
   "December",
 ];
+
+export const userDetailsGoogle = `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=`;
+
+export const dispatcherActions = {
+  LOGIN: "LOGIN",
+  LOGOUT: "LOGOUT",
+  REGISTER: "REGISTER",
+};
