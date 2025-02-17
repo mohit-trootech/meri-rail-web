@@ -1,0 +1,43 @@
+/**Constants */
+
+/**Daisy UI Themes */
+export const themes = ["light", "dark", "lofi", "black", "night"];
+
+export const IGNORE_URL_PATHS = [
+  "/login",
+  "/login/",
+  "/verify-account",
+  "/verify-account/",
+  "/forgot-password",
+  "/forgot-password/",
+  "/register",
+  "/register/",
+  "/organization/accounts",
+  "/organization/accounts/",
+  "/unauthorized",
+  "/unauthorized/",
+];
+
+export const BaseUrlPath = "http://127.0.0.1:8000";
+export const urlLogin = "http://127.0.0.1:8000/accounts/login/";
+export const urlForgotPassword =
+  "http://127.0.0.1:8000/accounts/forgot-password/";
+export const urlForgotPasswordOtpSubmit =
+  "http://127.0.0.1:8000/accounts/otp-verification/";
+
+export const MANAGER = "manager";
+
+export const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
