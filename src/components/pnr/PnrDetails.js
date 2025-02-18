@@ -2,6 +2,7 @@ import { useState } from "react";
 import bgGif from "../../static/img/blue-sky-train.gif";
 import { FaCalendar, FaTrain } from "react-icons/fa6";
 import PassengerDetails from "./PassengerDetails";
+import StationDetails from "./StationDetails";
 const PnrDetails = ({ pnr, handleSubmit }) => {
   const [passDrawer, setPassDrawer] = useState(null);
   const updatePassDrawer = (id) => {
@@ -9,7 +10,6 @@ const PnrDetails = ({ pnr, handleSubmit }) => {
       pnr.passengers.filter((passenger) => passenger.serial_number === id)[0]
     );
   };
-
   return (
     <div
       className="hero min-h-full"
@@ -80,7 +80,24 @@ const PnrDetails = ({ pnr, handleSubmit }) => {
                 <td>{pnr.cancel_status}</td>
               </tr>
               <tr className="text-left text-2xl">
-                <th colSpan={2}>Station Details</th>
+                <th colSpan={2}>
+                  <div className="flex justify-between">
+                    <div>Station Details</div>
+                    <div>
+                      <StationDetails pnr={pnr} />
+                      <button
+                        className="btn btn-sm btn-primary"
+                        onClick={() =>
+                          document
+                            .getElementById("pnr_station_detail_modal")
+                            .showModal()
+                        }
+                      >
+                        Details
+                      </button>
+                    </div>
+                  </div>
+                </th>
               </tr>
               <tr>
                 <th>From Station</th>

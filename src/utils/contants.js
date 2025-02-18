@@ -49,6 +49,8 @@ export const dispatcherActions = {
   LOGOUT: "LOGOUT",
   REGISTER: "REGISTER",
   SET_PNR: "SET_PNR",
+  SET_TRAINS: "SET_TRAINS",
+  SET_TRAIN: "SET_TRAIN",
 };
 
 export const LoadingMessages = {

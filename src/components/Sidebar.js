@@ -4,10 +4,12 @@ import {
   FaHouseChimney,
   FaTrainSubway,
   FaArrowsTurnToDots,
+  FaBuilding,
 } from "react-icons/fa6";
 import profile from "../static/img/profile.jpg";
 import ThemeOptions from "./ThemeOptions";
 import { ThemeContext } from "../context/Context";
+import { MdOutlineRailwayAlert } from "react-icons/md";
 const Sidebar = () => {
   const { theme, updateTheme } = useContext(ThemeContext);
   return (
@@ -35,11 +37,31 @@ const Sidebar = () => {
               </NavLink>
             </li>
             <li className="bg-base-100 rounded-lg">
-              <NavLink exact to="/pnr-status">
+              <NavLink to="/pnr-status">
                 <FaTrainSubway />
                 PNR Status
               </NavLink>
             </li>
+            <li>
+              <details open>
+                <summary className="mb-3">Details</summary>
+                <ul className="flex flex-col gap-3">
+                  <li className="bg-base-100 rounded-lg">
+                    <NavLink to="/trains">
+                      <MdOutlineRailwayAlert />
+                      Train Details
+                    </NavLink>
+                  </li>
+                  <li className="bg-base-100 rounded-lg">
+                    <NavLink to="/stations">
+                      <FaBuilding />
+                      Station Details
+                    </NavLink>
+                  </li>
+                </ul>
+              </details>
+            </li>
+
             <li className="bg-base-100 rounded-lg">
               <NavLink to="/tbis/">
                 <FaArrowsTurnToDots />

@@ -17,8 +17,8 @@ const GOOGLE_RESIGTER_PATH = "auth/auth-google-signup/";
 const AuthProvider = ({ children }) => {
   /**Toggle Password Visibility State */
   let id = null;
-  const [auth, AuthDispatch] = useReducer(AuthReducer, {});
-  const [user, UserDispatch] = useReducer(AuthReducer, {});
+  const [auth, AuthDispatch] = useReducer(AuthReducer, null);
+  const [user, UserDispatch] = useReducer(AuthReducer, null);
   const loginUser = async (data) => {
     id = LoadingToast(LoadingMessages.LOGIN);
     const response = await PostRequest(

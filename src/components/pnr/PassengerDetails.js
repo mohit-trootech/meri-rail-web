@@ -24,20 +24,20 @@ const PassengerDetails = ({ passenger, updatePassDrawer, passDrawer }) => {
               : "bg-yellow-400 text-gray-900"
           }
         >
-          {passenger.booking_status}/{passenger.booking_coach}/
-          {passenger.booking_berth}
+          Booking Status: {passenger.booking_details}
         </td>
       </tr>
       <tr className="hover">
         <td
           className={
-            passenger.booking_status === "CNF"
+            passenger.current_status === "CNF"
               ? "bg-success text-gray-900"
-              : "bg-yellow-400 text-gray-900"
+              : passenger.current_status === "CAN"
+              ? "bg-error text-gray-900"
+              : "bg-warning text-gray-900"
           }
         >
-          {passenger.booking_status}/{passenger.booking_coach}/
-          {passenger.booking_berth}
+          Current Status: {passenger.current_details}
         </td>
       </tr>
     </>

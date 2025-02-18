@@ -11,7 +11,7 @@ const Footer = () => {
       >
         <div className="flex justify-start items-center">
           <span>
-            <WiTrain className="w-12 h-12 transition-transform duration-500 ease-in-out transform -translate-x-5 hover:translate-x-2 z-[-999]" />
+            <WiTrain className="w-12 h-12 -translate-x-2 hover:animate-[tofro_1s_ease-in-out_infinite]" />
           </span>
           <div className="flex flex-col gap-2 items-start justify-center ml-2">
             <p>Meri Rail</p>

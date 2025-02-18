@@ -8,11 +8,11 @@ import bgGif from "../../static/img/blue-sky-train.gif";
 
 const PnrStatus = () => {
   const { pnr, fetchPnrStatus } = useContext(PnrContext);
-  console.log(pnr);
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    fetchPnrStatus(new FormData(event.target));
+    await fetchPnrStatus(new FormData(event.target));
   };
+
   return (
     <>
       <div className="grid grid-cols-9">
@@ -21,8 +21,8 @@ const PnrStatus = () => {
         </div>
 
         <div className="lg:col-span-7 col-span-9 h-screen overflow-auto">
-          {false ? (
-            <PnrDetails handleSubmit={handleSubmit} />
+          {pnr ? (
+            <PnrDetails pnr={pnr} handleSubmit={handleSubmit} />
           ) : (
             <div
               className="hero h-full"

@@ -11,3 +11,7 @@ export const HomeContext = createContext(null);
 export const PnrContext = createContext(null);
 
 export const UtilsContext = createContext(null);
+
+export const FirebaseContext = createContext(null);
+
+export const TrainContext = createContext(null);
