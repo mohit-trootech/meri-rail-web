@@ -8,7 +8,7 @@ import { ToastContainer } from "react-toastify";
 import ThemeProvider from "./providers/ThemeProvider";
 import AuthProvider from "./providers/AuthProvider";
 import UtilsProvider from "./providers/UtilsProvider";
-
+import PnrProvider from "./providers/PnrProvider";
 /**Apps */
 import Home from "./apps/home/Home";
 import AuthLogin from "./apps/auth/AuthLogin";
@@ -20,15 +20,17 @@ function App() {
       <ThemeProvider>
         <UtilsProvider>
           <AuthProvider>
-            <ToastContainer draggablePercent={60} draggable stacked />
-            <Routes>
-              {/* Auth Routes */}
-              <Route path="/auth/login/" element={<AuthLogin />} />
-              <Route path="/auth/register/" element={<AuthRegister />} />
-              {/* App Routes*/}
-              <Route path="/" element={<Home />} />
-              <Route path="pnr-status/" element={<PnrStatus />} />
-            </Routes>
+            <PnrProvider>
+              <ToastContainer draggablePercent={60} draggable stacked />
+              <Routes>
+                {/* Auth Routes */}
+                <Route path="/auth/login/" element={<AuthLogin />} />
+                <Route path="/auth/register/" element={<AuthRegister />} />
+                {/* App Routes*/}
+                <Route path="/" element={<Home />} />
+                <Route path="pnr-status/" element={<PnrStatus />} />
+              </Routes>
+            </PnrProvider>
           </AuthProvider>
         </UtilsProvider>
       </ThemeProvider>

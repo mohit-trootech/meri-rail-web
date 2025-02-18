@@ -48,4 +48,23 @@ export const dispatcherActions = {
   LOGIN: "LOGIN",
   LOGOUT: "LOGOUT",
   REGISTER: "REGISTER",
+  SET_PNR: "SET_PNR",
+};
+
+export const LoadingMessages = {
+  LOGIN: "Logging In...",
+  LOGOUT: "Logging Out...",
+  REGISTER: "Registering User...",
+  FORGOT_PASSWORD: "Sending Password Reset Link...",
+  PASSWORD_CHANGED: "Changing Password...",
+  FETCHING_PNR: "Fetching PNR Status...",
+};
+
+export const ResponseMessages = {
+  PNR_FETCHED: "PNR Details Fetched Successfully",
+  LOGIN_SUCCESS: "Login Successful",
+  LOGOUT_SUCCESS: "Logged Out Successfully",
+  REGISTER_SUCCESS: "Registered Successfully",
+  FORGOT_PASSWORD_SUCCESS: "Password Reset Link Sent Successfully",
+  PASSWORD_CHANGED_SUCCESS: "Password Changed Successfully",
 };

@@ -28,6 +28,7 @@ function AuthRegister() {
         email: response.email,
         username: response.email,
         google_id: response.id,
+        image: response.picture,
       });
     },
     onError: (error) => console.error("Login Failed:", error),
