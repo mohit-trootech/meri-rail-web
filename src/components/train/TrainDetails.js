@@ -113,11 +113,16 @@ const TrainDetails = ({ train }) => {
               </tr>
               <tr className="hover">
                 <td>District</td>
-                <td>{train.station_from.district.name}</td>
+                <td>
+                  {train.station_from.district &&
+                    train.station_from.district.name}
+                </td>
               </tr>
               <tr className="hover">
                 <td>State</td>
-                <td>{train.station_from.state.name}</td>
+                <td>
+                  {train.station_from.state && train.station_from.state.name}
+                </td>
               </tr>
             </tbody>
           </table>
@@ -174,11 +179,13 @@ const TrainDetails = ({ train }) => {
               </tr>
               <tr className="hover">
                 <td>District</td>
-                <td>{train.station_to.district.name}</td>
+                <td>
+                  {train.station_to.district && train.station_to.district.name}
+                </td>
               </tr>
               <tr className="hover">
                 <td>State</td>
-                <td>{train.station_to.state.name}</td>
+                <td>{train.station_to.state && train.station_to.state.name}</td>
               </tr>
             </tbody>
           </table>
