@@ -1,18 +1,23 @@
 import { TrainContext } from "../context/Context";
-import { useEffect, useReducer } from "react";
+import { useReducer } from "react";
 import { GetRequest } from "../utils/AxiosRequest";
 import { TrainReducer } from "../reducers/TrainReducers";
 import { getBearerToken } from "../utils/utils";
 import {
-  ResponseMessages,
   LoadingMessages,
   dispatcherActions,
   BaseUrlPath,
 } from "../utils/contants";
+import { LoadingToast } from "../utils/ToastMessage";
+import {
+  trainDetailsFetchedSuccess,
+  TrainDetailsResetSuccess,
+} from "../utils/handleResponses";
 
-const FETCH_TRAIN_PATH = "/api/trains/";
+const FETCH_TRAIN_PATH = "api/trains/";
 
 const TrainProvider = ({ children }) => {
+  let id = null;
   const [trains, TrainsDispatch] = useReducer(TrainReducer, null);
   const [train, TrainDispatch] = useReducer(TrainReducer, null);
   const fetchTrains = async (query_params) => {
@@ -26,7 +31,36 @@ const TrainProvider = ({ children }) => {
         payload: response.data.results,
       });
   };
-  const data = { trains, train, fetchTrains };
+  const trainDetailsFetching = async (number) => {
+    id = LoadingToast(LoadingMessages.FETCHING_TRAIN_DETAILS);
+    const response = await GetRequest(
+      BaseUrlPath + FETCH_TRAIN_PATH + number,
+      getBearerToken,
+      trainDetailsFetchedSuccess,
+      id
+    );
+    response &&
+      TrainDispatch({
+        type: dispatcherActions.SET_TRAIN,
+        payload: response.data,
+      });
+  };
+  const resetDetails = async () => {
+    id = LoadingToast(LoadingMessages.RESETTING_TRAIN_DETAILS);
+    TrainDispatch({
+      type: dispatcherActions.SET_TRAIN,
+      payload: null,
+    });
+    TrainDetailsResetSuccess(id);
+  };
+
+  const data = {
+    trains,
+    train,
+    fetchTrains,
+    trainDetailsFetching,
+    resetDetails,
+  };
   return <TrainContext.Provider value={data}>{children}</TrainContext.Provider>;
 };
 

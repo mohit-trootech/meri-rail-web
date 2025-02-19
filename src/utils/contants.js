@@ -60,6 +60,8 @@ export const LoadingMessages = {
   FORGOT_PASSWORD: "Sending Password Reset Link...",
   PASSWORD_CHANGED: "Changing Password...",
   FETCHING_PNR: "Fetching PNR Status...",
+  FETCHING_TRAIN_DETAILS: "Fetching Train Details...",
+  RESETTING_TRAIN_DETAILS: "Resetting Train Details...",
 };
 
 export const ResponseMessages = {
@@ -69,4 +71,6 @@ export const ResponseMessages = {
   REGISTER_SUCCESS: "Registered Successfully",
   FORGOT_PASSWORD_SUCCESS: "Password Reset Link Sent Successfully",
   PASSWORD_CHANGED_SUCCESS: "Password Changed Successfully",
+  TRAIN_DETAILS_FETCHED: "Train Details Fetched Successfully",
+  TRAIN_DETAILS_RESET: "Train Details Reset Successfully",
 };

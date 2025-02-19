@@ -5,7 +5,9 @@ const TrainDatalist = ({ trains }) => {
     <datalist id="trains-datalist">
       {trains &&
         trains.map((train) => (
-          <option key={train.number} value={train.number} />
+          <option key={train.number} value={train.number}>
+            {train.name}
+          </option>
         ))}
     </datalist>
   );

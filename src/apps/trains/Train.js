@@ -1,6 +1,7 @@
+/* eslint-disable */
 import React, { useContext, useEffect } from "react";
 import { TrainContext } from "../../context/Context";
-import TrainCard from "../../components/train/TrainCard";
+import TrainDetails from "../../components/train/TrainDetails";
 import TrainList from "../../components/train/TrainList";
 import Sidebar from "../../components/Sidebar";
 import Footer from "../../components/Footer";
@@ -8,16 +9,18 @@ import { Link } from "react-router-dom";
 import { FaHouseChimney, FaTrainSubway } from "react-icons/fa6";
 import TrainDatalist from "../../components/train/TrainDatalist";
 const Train = () => {
-  const { train, trains, fetchTrains } = useContext(TrainContext);
+  const { train, trains, fetchTrains, trainDetailsFetching, resetDetails } =
+    useContext(TrainContext);
   useEffect(() => {
     fetchTrains("page=1");
   }, []);
   const handleSubmit = (event) => {
     event.preventDefault();
+    trainDetailsFetching(event.target.number.value);
   };
   const handleChange = (event) => {
     event.preventDefault();
-    fetchTrains(`code=${event.target.value}`);
+    fetchTrains(`search=${event.target.value}`);
   };
   return (
     <>
@@ -26,7 +29,7 @@ const Train = () => {
           <Sidebar />
         </div>
 
-        <div className="lg:col-span-7 col-span-9 h-screen overflow-auto">
+        <div className="lg:col-span-7 col-span-9 h-screen overflow-auto mr-3">
           <div className="bg-base-100 min-h-screen overflow-auto">
             <div className="flex flex-col justify-start md:ml-5 my-3 gap-y-5">
               <div className="bg-base-300 flex justify-between items-center p-3 rounded-lg shadow-xl">
@@ -44,11 +47,23 @@ const Train = () => {
                   </ul>
                 </div>
               </div>
-              <div className="flex flex-row justify-end items-center p-3">
+              <div className="flex flex-row justify-between items-center p-3">
+                <div
+                  className="tooltip tooltip-right"
+                  data-tip="Click with caution this will reset the details"
+                >
+                  <button
+                    className="btn btn-sm btn-warning"
+                    onClick={resetDetails}
+                  >
+                    Reset Details
+                  </button>
+                </div>
                 <form onSubmit={handleSubmit} className="join" method="POST">
                   <input
-                    name="code"
+                    name="number"
                     type="text"
+                    pattern="^[0-9]{5}$"
                     autoComplete="off"
                     autoCorrect="off"
                     autoCapitalize="off"
@@ -63,7 +78,11 @@ const Train = () => {
                   </button>
                 </form>
               </div>
-              {train ? <TrainCard train={train} /> : "Train Details List"}
+              {train ? (
+                <TrainDetails train={train} />
+              ) : (
+                <TrainList trains={trains} handleSubmit={handleSubmit} />
+              )}
             </div>
           </div>
           <Footer />
