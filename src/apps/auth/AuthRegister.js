@@ -1,12 +1,13 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /**User Login Page */
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import { get_user_google_credentials } from "../../utils/utils";
 import { AuthContext, UtilsContext } from "../../context/Context";
 import railGif from "../../static/img/meri_rail.gif";
+import axios from "axios";
 import { FaGoogle, FaUserPlus, FaEye, FaEyeSlash } from "react-icons/fa6";
 function AuthRegister() {
   /**User Login Page */
@@ -18,22 +19,54 @@ function AuthRegister() {
     registerUser(data);
   };
   const googleAuthRegisterHandler = useGoogleLogin({
-    onSuccess: async (codeResponse) => {
-      let response = await get_user_google_credentials(
-        codeResponse.access_token
-      );
-      googleAuthRegister({
-        first_name: response.given_name,
-        last_name: response.family_name,
-        email: response.email,
-        username: response.email,
-        google_id: response.id,
-        image: response.picture,
-      });
+    scope:
+      "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events",
+    onSuccess: async (response) => {
+      console.log(response);
+      try {
+        // Send access token to backend
+        const res = await axios.post("http://localhost:8000/auth/google/", {
+          access_token: response.access_token,
+        });
+        console.log("Login successful:", res);
+        window.location.href = res.data.auth_url;
+      } catch (error) {
+        console.error("Login failed:", error);
+      }
+      // onSuccess: async (tokenResponse) => {
+      //   console.log(tokenResponse);
+      // let response = await get_user_google_credentials(
+      //   codeResponse.access_token
+      // );
+      // console.log(response);
+      // const calendarData = await axios.get(
+      //   "https://www.googleapis.com/calendar/v3/calendars/primary/events",
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${codeResponse.access_token}`,
+      //     },
+      //   }
+      // );
+      // console.log(calendarData);
+      // googleAuthRegister({
+      //   first_name: response.given_name,
+      //   last_name: response.family_name,
+      //   email: response.email,
+      //   username: response.email,
+      //   google_id: response.id,
+      //   image: response.picture,
+      // });
     },
     onError: (error) => console.error("Login Failed:", error),
   });
-
+  useEffect(() => {
+    const abc = async () => {
+      const res = await axios.post("http://localhost:8000/auth/google/", {});
+      console.log("Login successful:", res);
+      window.location.href = res.data.auth_url;
+    };
+    abc();
+  }, []);
   return (
     <>
       <div className="hero min-h-screen bg-base-200">
@@ -50,7 +83,7 @@ function AuthRegister() {
                 <div className="flex flex-col items-center w-full">
                   <div
                     className="tooltip w-full"
-                    data-tip="Click to Login with Google"
+                    data-tip="Click to Register with Google"
                   >
                     <button
                       className="w-full btn btn-secondary"

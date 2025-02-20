@@ -1,6 +1,4 @@
-/* eslint-disable jsx-a11y/no-redundant-roles */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/**User Login Page */
+/* eslint-disable */
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
@@ -25,6 +23,10 @@ function AuthLogin() {
   };
   const googleAuthLoginHandler = useGoogleLogin({
     onSuccess: async (codeResponse) => {
+      window.localStorage.setItem(
+        "google_response",
+        JSON.stringify(codeResponse)
+      );
       let response = await get_user_google_credentials(
         codeResponse.access_token
       );

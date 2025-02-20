@@ -17,6 +17,7 @@ import AuthLogin from "./apps/auth/AuthLogin";
 import AuthRegister from "./apps/auth/AuthRegister";
 import PnrStatus from "./apps/pnr_status/PnrStatus";
 import Train from "./apps/trains/Train";
+
 function App() {
   return (
     <BrowserRouter>
