@@ -11,12 +11,14 @@ import UtilsProvider from "./providers/UtilsProvider";
 import PnrProvider from "./providers/PnrProvider";
 import TrainProvider from "./providers/TrainProvider";
 import FirebaseProvider from "./providers/FirebaseProvider";
+import TbisProvider from "./providers/TbisProvider";
+import StationProvider from "./providers/StationProvider";
 /**Apps */
 import Home from "./apps/home/Home";
-import AuthLogin from "./apps/auth/AuthLogin";
-import AuthRegister from "./apps/auth/AuthRegister";
+import AuthView from "./apps/auth/AuthView";
 import PnrStatus from "./apps/pnr_status/PnrStatus";
 import Train from "./apps/trains/Train";
+import Tbis from "./apps/tbis/Tbis";
 
 function App() {
   return (
@@ -25,20 +27,24 @@ function App() {
         <UtilsProvider>
           <AuthProvider>
             <FirebaseProvider>
-              <TrainProvider>
-                <PnrProvider>
-                  <ToastContainer draggablePercent={60} draggable stacked />
-                  <Routes>
-                    {/* Auth Routes */}
-                    <Route path="/auth/login/" element={<AuthLogin />} />
-                    <Route path="/auth/register/" element={<AuthRegister />} />
-                    {/* App Routes*/}
-                    <Route path="/" element={<Home />} />
-                    <Route path="pnr-status/" element={<PnrStatus />} />
-                    <Route path="trains/" element={<Train />} />
-                  </Routes>
-                </PnrProvider>
-              </TrainProvider>
+              <StationProvider>
+                <TrainProvider>
+                  <TbisProvider>
+                    <PnrProvider>
+                      <ToastContainer draggablePercent={60} draggable stacked />
+                      <Routes>
+                        {/* Auth Routes */}
+                        <Route path="/auth/" element={<AuthView />} />
+                        {/* App Routes*/}
+                        <Route path="/" element={<Home />} />
+                        <Route path="pnr-status/" element={<PnrStatus />} />
+                        <Route path="trains/" element={<Train />} />
+                        <Route path="tbis/" element={<Tbis />} />
+                      </Routes>
+                    </PnrProvider>
+                  </TbisProvider>
+                </TrainProvider>
+              </StationProvider>
             </FirebaseProvider>
           </AuthProvider>
         </UtilsProvider>

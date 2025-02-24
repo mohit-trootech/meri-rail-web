@@ -31,3 +31,8 @@ export const TrainDetailsResetSuccess = (id) => {
   /**Handle Train Details Reset Response */
   SuccessToast(id, ResponseMessages.TRAIN_DETAILS_RESET);
 };
+
+export const tbisFetchedSuccess = (id) => {
+  /**Handle TBIS Fetched Response */
+  SuccessToast(id, ResponseMessages.TBIS_FETCHED);
+};

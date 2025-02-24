@@ -3,20 +3,7 @@
 /**Daisy UI Themes */
 export const themes = ["light", "dark", "lofi", "black", "night"];
 
-export const IGNORE_URL_PATHS = [
-  "/login",
-  "/login/",
-  "/verify-account",
-  "/verify-account/",
-  "/forgot-password",
-  "/forgot-password/",
-  "/register",
-  "/register/",
-  "/organization/accounts",
-  "/organization/accounts/",
-  "/unauthorized",
-  "/unauthorized/",
-];
+export const IGNORE_URL_PATHS = ["/auth/", "/auth"];
 
 export const BaseUrlPath = "http://127.0.0.1:8000/";
 export const urlLogin = "http://127.0.0.1:8000/api/login/";
@@ -45,12 +32,17 @@ export const MONTHS = [
 export const userDetailsGoogle = `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=`;
 
 export const dispatcherActions = {
+  ME: "ME",
   LOGIN: "LOGIN",
   LOGOUT: "LOGOUT",
   REGISTER: "REGISTER",
   SET_PNR: "SET_PNR",
   SET_TRAINS: "SET_TRAINS",
   SET_TRAIN: "SET_TRAIN",
+  SET_STATIONS: "SET_STATIONS",
+  SET_STATION: "SET_STATION",
+  SET_TBIS: "SET_TBIS",
+  RESET_DETAILS: "RESET_DETAILS",
 };
 
 export const LoadingMessages = {
@@ -62,6 +54,9 @@ export const LoadingMessages = {
   FETCHING_PNR: "Fetching PNR Status...",
   FETCHING_TRAIN_DETAILS: "Fetching Train Details...",
   RESETTING_TRAIN_DETAILS: "Resetting Train Details...",
+  TBIS_LOADING: "Fetching Available Trains...",
+  RESETTING_STATION_DETAILS: "Resetting Station Details...",
+  RESETTING_TBIS: "Resetting Available Trains...",
 };
 
 export const ResponseMessages = {
@@ -73,4 +68,7 @@ export const ResponseMessages = {
   PASSWORD_CHANGED_SUCCESS: "Password Changed Successfully",
   TRAIN_DETAILS_FETCHED: "Train Details Fetched Successfully",
   TRAIN_DETAILS_RESET: "Train Details Reset Successfully",
+  TBIS_FETCHED: "Available Train Details",
+  TBIS_RESET: "Available Trains Reset Successfully",
+  STATION_DETAILS_RESET: "Station Details Reset Successfully",
 };

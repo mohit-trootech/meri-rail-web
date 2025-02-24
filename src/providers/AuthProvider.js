@@ -1,59 +1,56 @@
 /**Auth Provider */
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
 import { AuthContext } from "../context/Context";
 import { AuthReducer } from "../reducers/AuthReducers";
 import {
   BaseUrlPath,
   dispatcherActions,
   LoadingMessages,
+  IGNORE_URL_PATHS,
 } from "../utils/contants";
-import { PostRequest } from "../utils/AxiosRequest";
+import { getBearerToken } from "../utils/utils";
+import { GetRequest, PostRequest } from "../utils/AxiosRequest";
 import { LoadingToast } from "../utils/ToastMessage";
-import { handleLogin, handleRegister } from "../utils/handleResponses";
-const LOGIN_PATH = "auth/login/";
-const REGISTER_PATH = "auth/register/";
-const GOOGLE_LOGIN_PATH = "auth/auth-google-login/";
-const GOOGLE_RESIGTER_PATH = "auth/auth-google-signup/";
+import { handleLogin } from "../utils/handleResponses";
+import { LogOut } from "../utils/LogOut";
+const LOGIN_PATH = "auth/google/login/";
+const GOOGLE_INIT = "auth/google/init/";
+const AUTHENTICATED_USER = "auth/profile/me/";
+
 const AuthProvider = ({ children }) => {
   /**Toggle Password Visibility State */
   let id = null;
   const [auth, AuthDispatch] = useReducer(AuthReducer, null);
   const [user, UserDispatch] = useReducer(AuthReducer, null);
-  const loginUser = async (data) => {
-    id = LoadingToast(LoadingMessages.LOGIN);
-    const response = await PostRequest(
-      BaseUrlPath + LOGIN_PATH,
-      data,
-      null,
-      handleLogin,
-      id
-    );
-    response &&
-      AuthDispatch({ type: dispatcherActions.LOGIN, payload: response.data });
-  };
-  const logOut = async () => {
-    AuthDispatch({ type: dispatcherActions.LOGOUT, payload: null });
-  };
 
-  const registerUser = async (data) => {
-    id = LoadingToast(LoadingMessages.REGISTER);
-    const response = await PostRequest(
-      BaseUrlPath + REGISTER_PATH,
-      data,
-      null,
-      handleRegister,
-      id
+  const logOutHandler = () => {
+    LogOut();
+    // AuthDispatch({
+    //   type: dispatcherActions.LOGOUT,
+    //   payload: null,
+    // });
+  };
+  const authenticatedUser = async () => {
+    const res = await GetRequest(
+      BaseUrlPath + AUTHENTICATED_USER,
+      getBearerToken
     );
-    response &&
-      AuthDispatch({
-        type: dispatcherActions.REGISTER,
-        payload: response.data,
+    res &&
+      UserDispatch({
+        type: dispatcherActions.ME,
+        payload: res.data,
       });
   };
+
+  useEffect(() => {
+    if (!IGNORE_URL_PATHS.includes(window.location.pathname)) {
+      authenticatedUser();
+    }
+  }, []);
   const googleAuthLogin = async (data) => {
     id = LoadingToast(LoadingMessages.LOGIN);
     const response = await PostRequest(
-      BaseUrlPath + GOOGLE_LOGIN_PATH,
+      BaseUrlPath + LOGIN_PATH,
       data,
       null,
       handleLogin,
@@ -65,28 +62,14 @@ const AuthProvider = ({ children }) => {
         payload: response.data,
       });
   };
-  const googleAuthRegister = async (data) => {
-    id = LoadingToast(LoadingMessages.REGISTER);
-    const response = await PostRequest(
-      BaseUrlPath + GOOGLE_RESIGTER_PATH,
-      data,
-      null,
-      handleRegister,
-      id
-    );
-    response &&
-      AuthDispatch({
-        type: dispatcherActions.REGISTER,
-        payload: response.data,
-      });
+  const googleAuthRegister = async () => {
+    const res = await GetRequest(BaseUrlPath + GOOGLE_INIT);
+    window.location.href = res.data.auth_url;
   };
-
   const data = {
     auth,
-    loginUser,
-    logOut,
     user,
-    registerUser,
+    logOutHandler,
     googleAuthLogin,
     googleAuthRegister,
   };

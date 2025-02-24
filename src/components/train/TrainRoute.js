@@ -27,13 +27,13 @@ const TrainRoute = ({ route }) => {
       type: "Feature",
       properties: {
         description: `
-          <div class="flex flex-col gap-3 items-start justify-center">
-            <div class="flex flex-row items-center justify-start gap-2">
+          <div className="flex flex-col gap-3 items-start justify-center">
+            <div className="flex flex-row items-center justify-start gap-2">
               ${item.station.name}
-              <span class="badge badge-xs badge-primary">${item.station.code}</span>
+              <span className="badge badge-xs badge-primary">${item.station.code}</span>
             </div>
-            <p class="text-sm font-semibold">${item.station.name_hi}</p>
-            <p class="text-xs font-semibold">${item.station.address}</p>
+            <p className="text-sm font-semibold">${item.station.name_hi}</p>
+            <p className="text-xs font-semibold">${item.station.address}</p>
           </div>
         `,
         icon: "https://apis.mapmyindia.com/map_v3/2.png",

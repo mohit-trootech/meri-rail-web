@@ -15,3 +15,7 @@ export const UtilsContext = createContext(null);
 export const FirebaseContext = createContext(null);
 
 export const TrainContext = createContext(null);
+
+export const TbisContext = createContext(null);
+
+export const StationContext = createContext(null);

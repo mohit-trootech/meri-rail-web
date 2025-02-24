@@ -6,12 +6,14 @@ import {
   FaArrowsTurnToDots,
   FaBuilding,
 } from "react-icons/fa6";
-import profile from "../static/img/profile.jpg";
 import ThemeOptions from "./ThemeOptions";
 import { ThemeContext } from "../context/Context";
-import { MdOutlineRailwayAlert } from "react-icons/md";
+import { MdOutlineRailwayAlert, MdOutlineLogin } from "react-icons/md";
+import { AuthContext } from "../context/Context";
+
 const Sidebar = () => {
   const { theme, updateTheme } = useContext(ThemeContext);
+  const { user, logOutHandler } = useContext(AuthContext);
   return (
     <>
       <div className="h-screen bg-base-200 overflow-y-auto shadow-xl flex flex-col justify-between align-center">
@@ -72,19 +74,50 @@ const Sidebar = () => {
         </div>
         <div>
           <div className="divider mb-0"></div>
-          <div className="btn btn-primary m-2 w-11/12 flex justify-start align-center">
-            <div>
-              <img
-                className="rounded-full w-8 h-8"
-                src={profile}
-                alt="avatar"
-              />
-            </div>
-            <div className="flex flex-col justify-center items-start">
-              <p className="text-sm text-grap-100">Mohit</p>
-              <p className="text-xs text-gray-300">alexis81@gmail.com</p>
-            </div>
-          </div>
+          {(user && (
+            <>
+              <div className="dropdown dropdown-top dropdown-hover dropdown-center w-full p-2">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-primary w-full"
+                >
+                  <div className="flex flex-row justify-start items-center w-full gap-3">
+                    <img
+                      className="rounded-full w-8 h-8"
+                      src={user.image}
+                      alt="avatar"
+                    />
+                    <div className="flex flex-col justify-center items-start">
+                      <p className="text-sm text-grap-100">
+                        {user.get_full_name}
+                      </p>
+                      <p className="text-xs text-gray-300">{user.email}</p>
+                    </div>
+                  </div>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content bg-base-300 shadow border rounded-box z-1 mt-3 w-52 p-2 shadow"
+                >
+                  <li>
+                    <Link to="/profile/">Profile</Link>
+                  </li>
+                  <li>
+                    <button onClick={logOutHandler}>Logout</button>
+                  </li>
+                  <li>
+                    <Link to="/docs/">About</Link>
+                  </li>
+                </ul>
+              </div>
+            </>
+          )) || (
+            <>
+              <MdOutlineLogin />
+              <Link to="/auth/">Login</Link>
+            </>
+          )}
         </div>
       </div>
     </>
