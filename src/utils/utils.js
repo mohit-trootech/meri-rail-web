@@ -1,5 +1,6 @@
 /**React Utilities */
-
+import { userDetailsGoogle } from "../utils/contants";
+import axios from "axios";
 export const redirectPage = (url) => {
   /**Redirect Page to New Url */
   window.location.href = url;
@@ -97,4 +98,16 @@ export const otpInputs = () => {
     input.addEventListener("focus", handleFocus);
     input.addEventListener("paste", handlePaste);
   });
+};
+export const get_user_google_credentials = async (access_token) => {
+  /**Get User Login Information Google */
+  try {
+    let response = await axios({
+      method: "GET",
+      url: userDetailsGoogle + access_token,
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
