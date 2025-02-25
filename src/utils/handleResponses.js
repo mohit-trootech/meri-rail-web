@@ -27,7 +27,7 @@ export const trainDetailsFetchedSuccess = (response, id) => {
   /**Handle Train Details Fetched Response */
   SuccessToast(id, ResponseMessages.TRAIN_DETAILS_FETCHED);
 };
-export const TrainDetailsResetSuccess = (response, id) => {
+export const TrainDetailsResetSuccess = (id) => {
   /**Handle Train Details Reset Response */
   SuccessToast(id, ResponseMessages.TRAIN_DETAILS_RESET);
 };
