@@ -27,12 +27,12 @@ export const trainDetailsFetchedSuccess = (response, id) => {
   /**Handle Train Details Fetched Response */
   SuccessToast(id, ResponseMessages.TRAIN_DETAILS_FETCHED);
 };
-export const TrainDetailsResetSuccess = (id) => {
+export const TrainDetailsResetSuccess = (response, id) => {
   /**Handle Train Details Reset Response */
   SuccessToast(id, ResponseMessages.TRAIN_DETAILS_RESET);
 };
 
-export const tbisFetchedSuccess = (id) => {
+export const tbisFetchedSuccess = (response, id) => {
   /**Handle TBIS Fetched Response */
   SuccessToast(id, ResponseMessages.TBIS_FETCHED);
 };

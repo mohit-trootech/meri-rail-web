@@ -10,7 +10,7 @@ import {
 import { tbisFetchedSuccess } from "../utils/handleResponses";
 import { PostRequest } from "../utils/AxiosRequest";
 import { getBearerToken } from "../utils/utils";
-import { SuccessToast } from "../utils/ToastMessage";
+import { LoadingToast, SuccessToast } from "../utils/ToastMessage";
 
 const TBIS_URL = "api/tbis/";
 
@@ -18,14 +18,14 @@ const TbisProvider = ({ children }) => {
   let id = null;
   const [tbis, TbisDispatch] = useReducer(TbisReducer, null);
   const resetDetails = () => {
-    id = LoadingMessages.TBIS_LOADING;
+    id = LoadingToast(LoadingMessages.RESETTING_TBIS);
     TbisDispatch({
       type: dispatcherActions.RESET_DETAILS,
     });
     SuccessToast(id, ResponseMessages.TBIS_RESET);
   };
   const fetchTbisData = async (data) => {
-    id = LoadingMessages.TBIS_LOADING;
+    id = LoadingToast(LoadingMessages.TBIS_LOADING);
     const res = await PostRequest(
       BaseUrlPath + TBIS_URL,
       data,
