@@ -1,31 +1,33 @@
 import { useContext } from "react";
 import { UtilsContext } from "../../context/Context";
-const TrainList = ({ trains, handleSubmit, fetchTrains }) => {
+const StationList = ({ stations, handleSubmit, fetchStations }) => {
   const { previous, next } = useContext(UtilsContext);
   const handleClick = (e) => {
     e.preventDefault();
-    fetchTrains(new URL(e.target.dataset.page).search);
+    fetchStations(new URL(e.target.dataset.page).search);
   };
   return (
     <>
       <div className="flex flex-col gap-5">
-        <table className="table table-zebra border border-gray-500 rounded shadow-xl">
+        <table className="table table-zebra shadow-xl">
           <thead>
             <tr>
-              <th>Train Number</th>
-              <th>Train Name</th>
+              <th>Station Name</th>
+              <th>Station Code</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {trains &&
-              trains.map((train) => (
-                <tr key={train.number}>
-                  <td>{train.number}</td>
-                  <td>{train.name}</td>
+            {stations &&
+              stations.map((station) => (
+                <tr key={station.code} className="hover">
+                  <td>
+                    {station.name} | {station.name_hi}
+                  </td>
+                  <td>{station.code}</td>
                   <td>
                     <form onSubmit={handleSubmit}>
-                      <input type="hidden" name="number" value={train.number} />
+                      <input type="hidden" name="code" value={station.code} />
                       <button type="submit" className="btn btn-xs btn-primary">
                         View Details
                       </button>
@@ -60,4 +62,4 @@ const TrainList = ({ trains, handleSubmit, fetchTrains }) => {
   );
 };
 
-export default TrainList;
+export default StationList;

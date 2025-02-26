@@ -1,28 +1,33 @@
 /* eslint-disable */
-import React, { useContext, useEffect } from "react";
-import { TrainContext, UtilsContext } from "../../context/Context";
-import Preloader from "../../components/Preloader";
-import TrainDetails from "../../components/train/TrainDetails";
-import TrainList from "../../components/train/TrainList";
+import { useContext, useEffect } from "react";
+import { StationContext, UtilsContext } from "../../context/Context";
 import Sidebar from "../../components/Sidebar";
-import Footer from "../../components/Footer";
+import { FaHouseChimney, FaBuilding } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import { FaHouseChimney, FaTrainSubway } from "react-icons/fa6";
-import TrainDatalist from "../../components/train/TrainDatalist";
-const Train = () => {
+import StationDatalist from "../../components/stations/StationDatalist";
+import StationList from "../../components/stations/StationList";
+import StationDetails from "../../components/stations/StationDetails";
+import Footer from "../../components/Footer";
+import Preloader from "../../components/Preloader";
+const Stations = () => {
   const { preload } = useContext(UtilsContext);
-  const { train, trains, fetchTrains, trainDetailsFetching, resetDetails } =
-    useContext(TrainContext);
+  const {
+    stations,
+    station,
+    fetchStations,
+    stationDetailsFetching,
+    resetDetails,
+  } = useContext(StationContext);
   useEffect(() => {
-    fetchTrains();
+    fetchStations("?page=1");
   }, []);
   const handleSubmit = (event) => {
     event.preventDefault();
-    trainDetailsFetching(event.target.number.value);
+    stationDetailsFetching(event.target.code.value);
   };
-  const handleChange = (event) => {
-    event.preventDefault();
-    fetchTrains(`?search=${event.target.value}`);
+  const handleChange = (e) => {
+    e.preventDefault();
+    fetchStations(`?search=${e.target.value}`);
   };
   return (
     <>
@@ -36,7 +41,7 @@ const Train = () => {
             <div className="bg-base-100 min-h-screen overflow-auto">
               <div className="flex flex-col justify-start md:ml-5 my-3 gap-y-5">
                 <div className="bg-base-300 flex justify-between items-center p-3 rounded-lg shadow-xl">
-                  <h1 className="text-2xl">Train Details</h1>
+                  <h1 className="text-2xl">Station Details</h1>
                   <div className="text-sm breadcrumbs">
                     <ul>
                       <li>
@@ -44,8 +49,8 @@ const Train = () => {
                         <Link to="/">Home</Link>
                       </li>
                       <li>
-                        <FaTrainSubway className="mr-2" />
-                        <p>Trains</p>
+                        <FaBuilding className="mr-2" />
+                        <p>Stations</p>
                       </li>
                     </ul>
                   </div>
@@ -64,30 +69,30 @@ const Train = () => {
                   </div>
                   <form onSubmit={handleSubmit} className="join" method="POST">
                     <input
-                      name="number"
+                      name="code"
                       type="text"
-                      pattern="^[0-9]{5}$"
+                      pattern="^[A-Za-z]$"
                       autoComplete="off"
                       autoCorrect="off"
                       autoCapitalize="off"
-                      list="trains-datalist"
+                      list="stations-datalist"
                       onChange={handleChange}
-                      placeholder="Enter Train Code"
+                      placeholder="Enter Station Name / Code"
                       className="join-item input input-sm input-secondary input-bordered"
                     />
-                    <TrainDatalist trains={trains} />
+                    <StationDatalist stations={stations} />
                     <button className="join-item btn btn-sm btn-primary">
                       Search
                     </button>
                   </form>
                 </div>
-                {train ? (
-                  <TrainDetails train={train} />
+                {station ? (
+                  <StationDetails station={station} />
                 ) : (
-                  <TrainList
-                    trains={trains}
+                  <StationList
+                    stations={stations}
                     handleSubmit={handleSubmit}
-                    fetchTrains={fetchTrains}
+                    fetchStations={fetchStations}
                   />
                 )}
               </div>
@@ -100,4 +105,4 @@ const Train = () => {
   );
 };
 
-export default Train;
+export default Stations;

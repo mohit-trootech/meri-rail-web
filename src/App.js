@@ -19,6 +19,7 @@ import AuthView from "./apps/auth/AuthView";
 import PnrStatus from "./apps/pnr_status/PnrStatus";
 import Train from "./apps/trains/Train";
 import Tbis from "./apps/tbis/Tbis";
+import Stations from "./apps/stations/Stations";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
                         <Route path="pnr-status/" element={<PnrStatus />} />
                         <Route path="trains/" element={<Train />} />
                         <Route path="tbis/" element={<Tbis />} />
+                        <Route path="stations/" element={<Stations />} />
                       </Routes>
                     </PnrProvider>
                   </TbisProvider>

@@ -1,6 +1,6 @@
 /**Auth Provider */
-import { useReducer, useEffect } from "react";
-import { AuthContext } from "../context/Context";
+import { useReducer, useEffect, useContext } from "react";
+import { AuthContext, UtilsContext } from "../context/Context";
 import { AuthReducer } from "../reducers/AuthReducers";
 import {
   BaseUrlPath,
@@ -20,6 +20,7 @@ const AUTHENTICATED_USER = "auth/profile/me/";
 const AuthProvider = ({ children }) => {
   /**Toggle Password Visibility State */
   let id = null;
+  const { updatePreloader } = useContext(UtilsContext);
   const [auth, AuthDispatch] = useReducer(AuthReducer, null);
   const [user, UserDispatch] = useReducer(AuthReducer, null);
 
@@ -33,7 +34,10 @@ const AuthProvider = ({ children }) => {
   const authenticatedUser = async () => {
     const res = await GetRequest(
       BaseUrlPath + AUTHENTICATED_USER,
-      getBearerToken
+      getBearerToken,
+      null,
+      null,
+      updatePreloader
     );
     res &&
       UserDispatch({

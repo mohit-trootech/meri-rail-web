@@ -55,6 +55,7 @@ export const LoadingMessages = {
   FETCHING_TRAIN_DETAILS: "Fetching Train Details...",
   RESETTING_TRAIN_DETAILS: "Resetting Train Details...",
   TBIS_LOADING: "Fetching Available Trains...",
+  FETCHING_STATION_DETAILS: "Fetching Station Details...",
   RESETTING_STATION_DETAILS: "Resetting Station Details...",
   RESETTING_TBIS: "Resetting Available Trains...",
 };
@@ -68,6 +69,7 @@ export const ResponseMessages = {
   PASSWORD_CHANGED_SUCCESS: "Password Changed Successfully",
   TRAIN_DETAILS_FETCHED: "Train Details Fetched Successfully",
   TRAIN_DETAILS_RESET: "Train Details Reset Successfully",
+  STATIONS_FETCHED: "Stations Fetched Successfully",
   TBIS_FETCHED: "Available Train Details",
   TBIS_RESET: "Available Trains Reset Successfully",
   STATION_DETAILS_RESET: "Station Details Reset Successfully",
