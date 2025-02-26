@@ -1,11 +1,10 @@
 import { useContext } from "react";
 import { UtilsContext } from "../../context/Context";
-const StationList = ({ stations, handleSubmit }) => {
+const StationList = ({ stations, handleSubmit, fetchStations }) => {
   const { previous, next } = useContext(UtilsContext);
-  console.log(previous, next);
   const handleClick = (e) => {
     e.preventDefault();
-    console.log(e.target);
+    fetchStations(new URL(e.target.dataset.page).search);
   };
   return (
     <>
@@ -41,14 +40,16 @@ const StationList = ({ stations, handleSubmit }) => {
         <div className="join flex flex-row items-center justify-end">
           <div className="join grid grid-cols-2">
             <button
-              onClick={handleClick}
+              onClick={previous && handleClick}
               data-page={previous}
+              disabled={!previous}
               className="join-item btn btn-outline btn-primary"
             >
-              Previous page
+              Previous
             </button>
             <button
-              onClick={handleClick}
+              onClick={next && handleClick}
+              disabled={!next}
               data-page={next}
               className="join-item btn btn-outline btn-info"
             >

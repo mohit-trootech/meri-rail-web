@@ -22,9 +22,12 @@ const StationProvider = ({ children }) => {
   const [station, StationDispatch] = useReducer(StationReducer, null);
   const fetchStations = async (query_params) => {
     const response = await GetRequest(
-      BaseUrlPath + FETCH_STATION_PATH + `?${query_params || ""}`,
+      BaseUrlPath + FETCH_STATION_PATH + `${query_params || ""}`,
       getBearerToken
     );
+
+    response && setNext(response.data.next);
+    response && setPrevious(response.data.previous);
     response &&
       StationsDispatch({
         type: dispatcherActions.SET_STATIONS,
@@ -39,8 +42,6 @@ const StationProvider = ({ children }) => {
       trainDetailsFetchedSuccess,
       id
     );
-    response && setNext(response.data.next);
-    response && setPrevious(response.data.previous);
     response &&
       StationDispatch({
         type: dispatcherActions.SET_STATION,

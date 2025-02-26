@@ -24,11 +24,11 @@ const TrainProvider = ({ children }) => {
   const [train, TrainDispatch] = useReducer(TrainReducer, null);
   const fetchTrains = async (query_params) => {
     const response = await GetRequest(
-      BaseUrlPath + FETCH_TRAIN_PATH + `?${query_params || ""}`,
+      BaseUrlPath + FETCH_TRAIN_PATH + `${query_params || ""}`,
       getBearerToken
     );
-    response && response.data.next && setNext(response.data.next);
-    response && response.data.previous && setPrevious(response.data.previous);
+    response && setNext(response.data.next);
+    response && setPrevious(response.data.previous);
     response &&
       TrainsDispatch({
         type: dispatcherActions.SET_TRAINS,
