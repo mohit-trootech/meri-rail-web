@@ -9,8 +9,8 @@ export const AuthReducer = (state, action) => {
       updateLocalStorage(ACCESS_TOKEN, action.payload.access);
       return action.payload;
     case dispatcherActions.LOGOUT:
-      removeLocalStorage(ACCESS_TOKEN);
-      removeLocalStorage(REFRESH_TOKEN);
+      removeLocalStorage("access");
+      removeLocalStorage("refresh");
       return null;
     case dispatcherActions.REGISTER:
       return null;

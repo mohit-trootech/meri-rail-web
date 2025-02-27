@@ -6,10 +6,10 @@ import { AuthContext } from "../../context/Context";
 import railGif from "../../static/img/meri_rail.gif";
 import MeriRailLogo from "../../static/img/meri_rail.webp";
 import { FcGoogle } from "react-icons/fc";
+
 function AuthView() {
   /**User Login Page */
-  const { loginUser, googleAuthLogin, googleAuthRegister } =
-    useContext(AuthContext);
+  const { googleAuthLogin, googleAuthRegister } = useContext(AuthContext);
   const handleGoogleRegisterClick = (event) => {
     event.preventDefault();
     googleAuthRegister();

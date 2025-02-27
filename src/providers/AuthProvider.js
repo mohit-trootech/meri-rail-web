@@ -25,11 +25,11 @@ const AuthProvider = ({ children }) => {
   const [user, UserDispatch] = useReducer(AuthReducer, null);
 
   const logOutHandler = () => {
+    AuthDispatch({
+      type: dispatcherActions.LOGOUT,
+      payload: null,
+    });
     LogOut();
-    // AuthDispatch({
-    //   type: dispatcherActions.LOGOUT,
-    //   payload: null,
-    // });
   };
   const authenticatedUser = async () => {
     const res = await GetRequest(
