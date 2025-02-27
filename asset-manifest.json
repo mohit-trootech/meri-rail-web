@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/react-gh-pages/static/css/main.d9a1b812.css",
+    "main.js": "/react-gh-pages/static/js/main.d47e9930.js",
+    "static/media/meri_rail.gif": "/react-gh-pages/static/media/meri_rail.ab8f65e78457a14a4f25.gif",
+    "static/media/blue-sky-train.gif": "/react-gh-pages/static/media/blue-sky-train.b1befe1c6f41cc076bf9.gif",
+    "static/media/meri_rail.webp": "/react-gh-pages/static/media/meri_rail.b5d62d8ecf50c0a0a1e8.webp",
+    "index.html": "/react-gh-pages/index.html",
+    "main.d9a1b812.css.map": "/react-gh-pages/static/css/main.d9a1b812.css.map",
+    "main.d47e9930.js.map": "/react-gh-pages/static/js/main.d47e9930.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d9a1b812.css",
+    "static/js/main.d47e9930.js"
+  ]
+}
