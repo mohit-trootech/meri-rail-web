@@ -5,7 +5,7 @@ export const themes = ["light", "dark", "lofi", "black", "night"];
 
 export const IGNORE_URL_PATHS = ["/auth/", "/auth"];
 
-export const BaseUrlPath = "http://127.0.0.1:8000/";
+export const BaseUrlPath = "https://d872-103-24-180-44.ngrok-free.app/";
 export const urlLogin = "http://127.0.0.1:8000/api/login/";
 export const urlForgotPassword =
   "http://127.0.0.1:8000/accounts/forgot-password/";
