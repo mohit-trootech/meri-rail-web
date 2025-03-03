@@ -9,6 +9,7 @@ import Footer from "../../components/Footer";
 import { Link } from "react-router-dom";
 import { FaHouseChimney, FaTrainSubway } from "react-icons/fa6";
 import TrainDatalist from "../../components/train/TrainDatalist";
+import NavBarMobile from "../../components/NavBarMobile";
 const Train = () => {
   const { preload } = useContext(UtilsContext);
   const { train, trains, fetchTrains, trainDetailsFetching, resetDetails } =
@@ -33,6 +34,9 @@ const Train = () => {
           </div>
 
           <div className="lg:col-span-7 col-span-9 h-screen overflow-auto mr-3">
+            <div className="md:hidden">
+              <NavBarMobile />
+            </div>
             <div className="bg-base-100 min-h-screen overflow-auto">
               <div className="flex flex-col justify-start md:ml-5 my-3 gap-y-5">
                 <div className="bg-base-300 flex justify-between items-center p-3 rounded-lg shadow-xl">

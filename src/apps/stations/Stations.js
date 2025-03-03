@@ -9,6 +9,7 @@ import StationList from "../../components/stations/StationList";
 import StationDetails from "../../components/stations/StationDetails";
 import Footer from "../../components/Footer";
 import Preloader from "../../components/Preloader";
+import NavBarMobile from "../../components/NavBarMobile";
 const Stations = () => {
   const { preload } = useContext(UtilsContext);
   const {
@@ -38,6 +39,9 @@ const Stations = () => {
           </div>
 
           <div className="lg:col-span-7 col-span-9 h-screen overflow-auto mr-3">
+            <div className="md:hidden">
+              <NavBarMobile />
+            </div>
             <div className="bg-base-100 min-h-screen overflow-auto">
               <div className="flex flex-col justify-start md:ml-5 my-3 gap-y-5">
                 <div className="bg-base-300 flex justify-between items-center p-3 rounded-lg shadow-xl">

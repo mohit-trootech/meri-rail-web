@@ -1,4 +1,5 @@
 /**Auth Provider */
+/* eslint-disable */
 import { useReducer, useEffect, useContext } from "react";
 import { AuthContext, UtilsContext } from "../context/Context";
 import { AuthReducer } from "../reducers/AuthReducers";
@@ -32,23 +33,22 @@ const AuthProvider = ({ children }) => {
     LogOut();
   };
   const authenticatedUser = async () => {
-    // const res = await GetRequest(
-    //   BaseUrlPath + AUTHENTICATED_USER,
-    //   getBearerToken,
-    //   null,
-    //   null,
-    //   updatePreloader
-    // );
-    // res &&
-    //   UserDispatch({
-    //     type: dispatcherActions.ME,
-    //     payload: res.data,
-    //   });
+    const res = await GetRequest(
+      BaseUrlPath + AUTHENTICATED_USER,
+      getBearerToken,
+      null,
+      null,
+      updatePreloader
+    );
+    res &&
+      UserDispatch({
+        type: dispatcherActions.ME,
+        payload: res.data,
+      });
   };
 
   useEffect(() => {
     if (!IGNORE_URL_PATHS.includes(window.location.pathname)) {
-      updatePreloader();
       authenticatedUser();
     }
   }, []);

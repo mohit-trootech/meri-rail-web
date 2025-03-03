@@ -52,7 +52,10 @@ const Sidebar = () => {
           )) || (
             <>
               <div className="px-3 w-full">
-                <Link to="/auth/" className="btn btn-primary w-full">
+                <Link
+                  to="/auth/"
+                  className="btn btn-primary btn-sm w-full text-white"
+                >
                   <MdOutlineLogin />
                   Login
                 </Link>

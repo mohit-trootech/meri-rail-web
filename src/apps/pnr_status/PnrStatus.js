@@ -6,6 +6,7 @@ import { PnrContext, UtilsContext } from "../../context/Context";
 import PnrDetails from "../../components/pnr/PnrDetails";
 import bgGif from "../../static/img/blue-sky-train.gif";
 import Preloader from "../../components/Preloader";
+import NavBarMobile from "../../components/NavBarMobile";
 
 const PnrStatus = () => {
   const { preload } = useContext(UtilsContext);
@@ -24,11 +25,14 @@ const PnrStatus = () => {
           </div>
 
           <div className="lg:col-span-7 col-span-9 h-screen overflow-auto">
+            <div className="md:hidden">
+              <NavBarMobile />
+            </div>
             {pnr ? (
               <PnrDetails pnr={pnr} handleSubmit={handleSubmit} />
             ) : (
               <div
-                className="hero h-full"
+                className="hero h-full static"
                 style={{
                   backgroundImage: `url(${bgGif})`,
                 }}
@@ -36,7 +40,7 @@ const PnrStatus = () => {
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="hero-content text-center text-neutral-content">
                   <form
-                    className="bg-base-300 p-10 rounded-lg shadow-2xl"
+                    className="bg-base-300 p-10 rounded-lg shadow-2xl static"
                     method="POST"
                     onSubmit={handleSubmit}
                   >

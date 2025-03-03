@@ -64,7 +64,7 @@ const NavBarMobile = () => {
             )}
           </div>
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side z-10">
           <div className="bg-base-200 min-h-full w-80">
             <SidebarContent />
           </div>
