@@ -3,6 +3,8 @@ import { useContext } from "react";
 import Preloader from "../../components/Preloader";
 import Sidebar from "../../components/Sidebar";
 import { UtilsContext } from "../../context/Context";
+import NavBarMobile from "../../components/NavBarMobile";
+import Service from "../../components/home/Services";
 const Home = () => {
   const { preload } = useContext(UtilsContext);
   return (
@@ -13,8 +15,14 @@ const Home = () => {
             <Sidebar />
           </div>
 
-          <div className="lg:col-span-7">
-            <div className="p-14">React App with Google Calendar API!</div>
+          <div className="lg:col-span-7 col-span-9 h-screen overflow-auto md:mr-3">
+            {/* NavBar Viewport Small */}
+            <div className="md:hidden">
+              <NavBarMobile />
+            </div>
+            <div>
+              <Service />
+            </div>
           </div>
         </div>
       )}
