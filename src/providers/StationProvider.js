@@ -3,7 +3,6 @@ import { useReducer, useContext } from "react";
 import { UtilsContext } from "../context/Context";
 import { GetRequest } from "../utils/AxiosRequest";
 import { StationReducer } from "../reducers/StationReducer";
-import { getBearerToken } from "../utils/utils";
 import {
   LoadingMessages,
   dispatcherActions,
@@ -22,8 +21,7 @@ const StationProvider = ({ children }) => {
   const [station, StationDispatch] = useReducer(StationReducer, null);
   const fetchStations = async (query_params) => {
     const response = await GetRequest(
-      BaseUrlPath + FETCH_STATION_PATH + `${query_params || ""}`,
-      getBearerToken
+      BaseUrlPath + FETCH_STATION_PATH + `${query_params || ""}`
     );
 
     response && setNext(response.data.next);
@@ -38,7 +36,7 @@ const StationProvider = ({ children }) => {
     id = LoadingToast(LoadingMessages.FETCHING_STATION_DETAILS);
     const response = await GetRequest(
       BaseUrlPath + FETCH_STATION_PATH + code,
-      getBearerToken,
+      null,
       trainDetailsFetchedSuccess,
       id
     );

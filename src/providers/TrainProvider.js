@@ -2,7 +2,6 @@ import { TrainContext } from "../context/Context";
 import { useContext, useReducer } from "react";
 import { GetRequest } from "../utils/AxiosRequest";
 import { TrainReducer } from "../reducers/TrainReducers";
-import { getBearerToken } from "../utils/utils";
 import { UtilsContext } from "../context/Context";
 import {
   LoadingMessages,
@@ -24,8 +23,7 @@ const TrainProvider = ({ children }) => {
   const [train, TrainDispatch] = useReducer(TrainReducer, null);
   const fetchTrains = async (query_params) => {
     const response = await GetRequest(
-      BaseUrlPath + FETCH_TRAIN_PATH + `${query_params || ""}`,
-      getBearerToken
+      BaseUrlPath + FETCH_TRAIN_PATH + `${query_params || ""}`
     );
     response && setNext(response.data.next);
     response && setPrevious(response.data.previous);
@@ -39,7 +37,7 @@ const TrainProvider = ({ children }) => {
     id = LoadingToast(LoadingMessages.FETCHING_TRAIN_DETAILS);
     const response = await GetRequest(
       BaseUrlPath + FETCH_TRAIN_PATH + number,
-      getBearerToken,
+      null,
       trainDetailsFetchedSuccess,
       id
     );
