@@ -5,9 +5,7 @@ export const themes = ["light", "dark", "lofi", "black", "night"];
 
 export const IGNORE_URL_PATHS = ["/auth/", "/auth"];
 
-export const BaseUrlPath =
-  "https://ec2-65-1-248-240.ap-south-1.compute.amazonaws.com/";
-export const urlLogin = "http://127.0.0.1:8000/api/login/";
+export const BaseUrlPath = "https://halydeals.com/";
 export const urlForgotPassword =
   "http://127.0.0.1:8000/accounts/forgot-password/";
 export const urlForgotPasswordOtpSubmit =
