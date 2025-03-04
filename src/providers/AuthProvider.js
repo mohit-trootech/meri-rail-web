@@ -68,8 +68,7 @@ const AuthProvider = ({ children }) => {
       });
   };
   const googleAuthRegister = async () => {
-    const res = await GetRequest(BaseUrlPath + GOOGLE_INIT);
-    window.location.href = res.data.auth_url;
+    console.log(window.open(BaseUrlPath + GOOGLE_INIT, "_blank"));
   };
   const data = {
     auth,
