@@ -1,6 +1,6 @@
 /**Auth Provider */
 /* eslint-disable */
-import { useReducer, useEffect, useContext } from "react";
+import { useReducer, useEffect, useContext, useState } from "react";
 import { AuthContext, UtilsContext } from "../context/Context";
 import { AuthReducer } from "../reducers/AuthReducers";
 import {
@@ -17,6 +17,7 @@ import { LogOut } from "../utils/LogOut";
 const LOGIN_PATH = "auth/google/login/";
 const GOOGLE_INIT = "auth/google/init/";
 const AUTHENTICATED_USER = "auth/profile/me/";
+const USER_DETAILS = "auth/profile/"
 
 const AuthProvider = ({ children }) => {
   /**Toggle Password Visibility State */
@@ -24,6 +25,18 @@ const AuthProvider = ({ children }) => {
   const { updatePreloader } = useContext(UtilsContext);
   const [auth, AuthDispatch] = useReducer(AuthReducer, null);
   const [user, UserDispatch] = useReducer(AuthReducer, null);
+  const [details, setDetails] = useState(null)
+
+  const getUserDetails = async () => {
+    if (user){
+    const response =await GetRequest(BaseUrlPath+USER_DETAILS+user.id, getBearerToken)
+    response && setDetails(response.data)
+    }
+  }
+  const updateUserDetails = async (data) => {
+    const response = await PatchRequest(BaseUrlPath+USER_DETAILS, data, getBearerToken)
+    response && setDetails(response.data)
+  }
 
   const logOutHandler = () => {
     AuthDispatch({
@@ -73,10 +86,10 @@ const AuthProvider = ({ children }) => {
 
   const data = {
     auth,
-    user,
+    user,details,
     logOutHandler,
     googleAuthLogin,
-    googleAuthRegister,
+    googleAuthRegister,getUserDetails, updateUserDetails
   };
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
 };

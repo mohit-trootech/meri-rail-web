@@ -20,7 +20,7 @@ import PnrStatus from "./apps/pnr_status/PnrStatus";
 import Train from "./apps/trains/Train";
 import Tbis from "./apps/tbis/Tbis";
 import Stations from "./apps/stations/Stations";
-
+import Profile from "./apps/profile/Profile";
 function App() {
   return (
     <BrowserRouter>
@@ -36,6 +36,7 @@ function App() {
                       <Routes>
                         {/* Auth Routes */}
                         <Route path="/auth/" element={<AuthView />} />
+                        <Route path="/profile/" element={<Profile />} />
                         {/* App Routes*/}
                         <Route path="/" element={<Home />} />
                         <Route path="pnr-status/" element={<PnrStatus />} />

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { MdOutlineLogin } from "react-icons/md";
 import { AuthContext } from "../context/Context";
@@ -35,10 +35,10 @@ const Sidebar = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-base-300 shadow border rounded-box z-1 mt-3 w-52 p-2 shadow"
+                  className="menu menu-sm dropdown-content bg-base-300 shadow border rounded-box z-1 mt-3 w-52 p-2 shadow gap-y-1"
                 >
                   <li>
-                    <Link to="/profile/">Profile</Link>
+                    <NavLink to="/profile/">Profile</NavLink>
                   </li>
                   <li>
                     <button onClick={logOutHandler}>Logout</button>
