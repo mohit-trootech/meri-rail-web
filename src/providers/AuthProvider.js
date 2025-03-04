@@ -48,10 +48,9 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    updatePreloader();
-    // if (!IGNORE_URL_PATHS.includes(window.location.pathname)) {
-    //   authenticatedUser();
-    // }
+    if (!IGNORE_URL_PATHS.includes(window.location.pathname)) {
+      authenticatedUser();
+    }
   }, []);
   const googleAuthLogin = async (data) => {
     id = LoadingToast(LoadingMessages.LOGIN);
