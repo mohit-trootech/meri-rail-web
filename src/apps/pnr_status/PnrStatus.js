@@ -10,7 +10,7 @@ import NavBarMobile from "../../components/NavBarMobile";
 
 const PnrStatus = () => {
   const { preload } = useContext(UtilsContext);
-  const { pnr, fetchPnrStatus } = useContext(PnrContext);
+  const { pnr, fetchPnrStatus, resetPnrDetails } = useContext(PnrContext);
   const handleSubmit = async (event) => {
     event.preventDefault();
     await fetchPnrStatus(new FormData(event.target));
@@ -29,7 +29,11 @@ const PnrStatus = () => {
               <NavBarMobile />
             </div>
             {pnr ? (
-              <PnrDetails pnr={pnr} handleSubmit={handleSubmit} />
+              <PnrDetails
+                pnr={pnr}
+                handleSubmit={handleSubmit}
+                resetPnrDetails={resetPnrDetails}
+              />
             ) : (
               <div
                 className="hero h-full static"

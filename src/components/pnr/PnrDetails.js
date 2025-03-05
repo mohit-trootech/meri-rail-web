@@ -3,7 +3,7 @@ import bgGif from "../../static/img/blue-sky-train.gif";
 import { FaCalendar, FaTrain } from "react-icons/fa6";
 import PassengerDetails from "./PassengerDetails";
 import StationDetails from "./StationDetails";
-const PnrDetails = ({ pnr, handleSubmit }) => {
+const PnrDetails = ({ pnr, handleSubmit, resetPnrDetails }) => {
   const [passDrawer, setPassDrawer] = useState(null);
   const updatePassDrawer = (id) => {
     setPassDrawer(
@@ -22,8 +22,11 @@ const PnrDetails = ({ pnr, handleSubmit }) => {
         <div className="flex flex-col justify-center items-start w-full">
           <div className="flex justify-between items-center w-full">
             <h1 className="text-3xl font-bold">PNR: {pnr.pnr}</h1>
-            <div className="flex flex-row items-center justify-end">
-              <button className="btn btn-sm btn-primary" onClick={handleSubmit}>
+            <div className="flex flex-row items-center justify-end gap-2">
+              <button
+                className="btn btn-sm btn-primary"
+                onClick={resetPnrDetails}
+              >
                 Reset Details
               </button>
               <form method="POST" onSubmit={handleSubmit}>
