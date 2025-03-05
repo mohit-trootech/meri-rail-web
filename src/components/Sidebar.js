@@ -25,10 +25,8 @@ const Sidebar = () => {
                       src={user.image}
                       alt="avatar"
                     />
-                    <div className="flex flex-col justify-center items-start">
-                      <p className="text-sm text-grap-100">
-                        {user.get_full_name}
-                      </p>
+                    <div className="flex flex-col justify-center items-start truncate">
+                      <p className="text-sm font-bold">{user.get_full_name}</p>
                       <p className="text-xs text-gray-300">{user.email}</p>
                     </div>
                   </div>

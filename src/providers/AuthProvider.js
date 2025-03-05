@@ -10,14 +10,14 @@ import {
   IGNORE_URL_PATHS,
 } from "../utils/contants";
 import { getBearerToken } from "../utils/utils";
-import { GetRequest, PostRequest } from "../utils/AxiosRequest";
+import { GetRequest, PostRequest, PatchRequest } from "../utils/AxiosRequest";
 import { LoadingToast } from "../utils/ToastMessage";
 import { handleLogin } from "../utils/handleResponses";
 import { LogOut } from "../utils/LogOut";
 const LOGIN_PATH = "auth/google/login/";
 const GOOGLE_INIT = "auth/google/init/";
 const AUTHENTICATED_USER = "auth/profile/me/";
-const USER_DETAILS = "auth/profile/"
+const USER_DETAILS = "auth/profile/";
 
 const AuthProvider = ({ children }) => {
   /**Toggle Password Visibility State */
@@ -25,18 +25,26 @@ const AuthProvider = ({ children }) => {
   const { updatePreloader } = useContext(UtilsContext);
   const [auth, AuthDispatch] = useReducer(AuthReducer, null);
   const [user, UserDispatch] = useReducer(AuthReducer, null);
-  const [details, setDetails] = useState(null)
+  const [details, setDetails] = useState(null);
 
   const getUserDetails = async () => {
-    if (user){
-    const response =await GetRequest(BaseUrlPath+USER_DETAILS+user.id, getBearerToken)
-    response && setDetails(response.data)
+    if (user) {
+      const response = await GetRequest(
+        BaseUrlPath + USER_DETAILS + user.id,
+        getBearerToken
+      );
+      response && setDetails(response.data);
     }
-  }
+  };
   const updateUserDetails = async (data) => {
-    const response = await PatchRequest(BaseUrlPath+USER_DETAILS, data, getBearerToken)
-    response && setDetails(response.data)
-  }
+    const response = await PatchRequest(
+      BaseUrlPath + USER_DETAILS + user.id + "/",
+      data,
+      getBearerToken
+    );
+    response && setDetails(response.data);
+    response && authenticatedUser();
+  };
 
   const logOutHandler = () => {
     AuthDispatch({
@@ -81,15 +89,18 @@ const AuthProvider = ({ children }) => {
       });
   };
   const googleAuthRegister = async () => {
-   window.open(BaseUrlPath + GOOGLE_INIT, "_blank").focus()
+    window.open(BaseUrlPath + GOOGLE_INIT, "_blank").focus();
   };
 
   const data = {
     auth,
-    user,details,
+    user,
+    details,
     logOutHandler,
     googleAuthLogin,
-    googleAuthRegister,getUserDetails, updateUserDetails
+    googleAuthRegister,
+    getUserDetails,
+    updateUserDetails,
   };
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
 };

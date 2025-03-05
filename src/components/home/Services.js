@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FaArrowsTurnToDots, FaBell, FaBuilding } from "react-icons/fa6";
 import { MdOutlineRailwayAlert } from "react-icons/md";
 
@@ -26,20 +27,24 @@ const Service = () => {
             title="PNR Details"
             details="Get real-time updates on your train's PNR status, including confirmation status, coach and seat number, and current position."
             icon={<FaBell className="w-8 h-8 text-gray-50" />}
+            link="/pnr-status/"
           />
           <ServiceCard
             title="Train Between Stations"
+            link={"/tbis/"}
             details="Find trains running between two stations, along with their schedules, routes, and availability."
             icon={<FaArrowsTurnToDots className="w-8 h-8 text-gray-50" />}
           />
           <ServiceCard
             title="Train Details"
-            details="Get comprehensive information about a specific train, including its route, schedule, halts, and real-time running status."
+            link={"/trains/"}
+            details="Get comprehensive information about a specific train, including its route, schedule, halts."
             icon={<MdOutlineRailwayAlert className="w-8 h-8 text-gray-50" />}
           />
           <ServiceCard
-            title="PNR Details"
-            details="Get real-time updates on your train's PNR status, including confirmation status, coach and seat number, and current position."
+            title="Station Details"
+            link={"/stations/"}
+            details="Get comprehensive information about a specific stations, including its location, google map link."
             icon={<FaBuilding className="w-8 h-8 text-gray-50" />}
           />
         </div>
@@ -50,10 +55,10 @@ const Service = () => {
 
 export default Service;
 
-const ServiceCard = ({ icon, title, details }) => {
+const ServiceCard = ({ icon, title, details, link }) => {
   return (
     <>
-      <div className="w-full px-4 md:w-1/2 lg:w-1/3">
+      <Link to={link} className="w-full px-4 md:w-1/2 lg:w-1/3 cursor-pointer">
         <div className="mb-9 rounded-xl p-10 shadow-md hover:shadow-lg transition border border-gray-500 hover:border-primary h-full">
           <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl bg-primary">
             {icon}
@@ -63,7 +68,7 @@ const ServiceCard = ({ icon, title, details }) => {
           </h4>
           <p className="text-body-color dark:text-dark-6">{details}</p>
         </div>
-      </div>
+      </Link>
     </>
   );
 };
