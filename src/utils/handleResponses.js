@@ -23,6 +23,11 @@ export const PnrDetailsFetchedSuccess = (response, id) => {
   /**Handle PNR Details Fetched Response */
   SuccessToast(id, ResponseMessages.PNR_FETCHED);
 };
+
+export const PnrDetailsResetSuccess = (id) => {
+  /**Handle PNR Details Reset Response */
+  SuccessToast(id, ResponseMessages.PNR_RESET);
+};
 export const trainDetailsFetchedSuccess = (response, id) => {
   /**Handle Train Details Fetched Response */
   SuccessToast(id, ResponseMessages.TRAIN_DETAILS_FETCHED);

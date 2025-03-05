@@ -30,11 +30,6 @@ const PassengerDrawer = ({ id, passDrawer, updatePassDrawer }) => {
                   ✕
                 </label>
               </div>
-              {/* quota: "TQ", nationality: "IN", waitlist_type: null,
-                booking_status: "CNF", booking_coach: "G13", booking_berth:
-                "43", booking_details: "CNF/G13/43/UB", current_status: "CNF",
-                current_coach: "G13", current_berth: "43", current_details:
-                "CNF/G13/43/UB", */}
               {(passDrawer && (
                 <table className="table table-zebra w-full overflow-auto">
                   <tbody>

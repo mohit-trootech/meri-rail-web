@@ -38,7 +38,7 @@ const PnrStatus = () => {
                 }}
               >
                 <div className="hero-overlay bg-opacity-60"></div>
-                <div className="hero-content text-center text-neutral-content">
+                <div className="hero-content text-center">
                   <form
                     className="bg-base-300 p-10 rounded-lg shadow-2xl static"
                     method="POST"

@@ -22,10 +22,17 @@ const PnrDetails = ({ pnr, handleSubmit }) => {
         <div className="flex flex-col justify-center items-start w-full">
           <div className="flex justify-between items-center w-full">
             <h1 className="text-3xl font-bold">PNR: {pnr.pnr}</h1>
-            <form method="POST" onSubmit={handleSubmit}>
-              <input name="pnr" value={pnr.pnr} type="hidden" />
-              <button className="btn btn-sm btn-primary">Update Details</button>
-            </form>
+            <div className="flex flex-row items-center justify-end">
+              <button className="btn btn-sm btn-primary" onClick={handleSubmit}>
+                Reset Details
+              </button>
+              <form method="POST" onSubmit={handleSubmit}>
+                <input name="pnr" value={pnr.pnr} type="hidden" />
+                <button className="btn btn-sm btn-primary">
+                  Update Details
+                </button>
+              </form>
+            </div>
           </div>
           <ul className="menu rounded-box w-full lg:menu-horizontal rounded-box justify-start">
             <li>

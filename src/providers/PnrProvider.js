@@ -9,7 +9,10 @@ import {
 } from "../utils/contants";
 import { getBearerToken } from "../utils/utils";
 import { LoadingToast } from "../utils/ToastMessage";
-import { PnrDetailsFetchedSuccess } from "../utils/handleResponses";
+import {
+  PnrDetailsFetchedSuccess,
+  PnrDetailsResetSuccess,
+} from "../utils/handleResponses";
 
 const FETCH_API = "api/pnr/";
 
@@ -29,8 +32,13 @@ const PnrProvider = ({ children }) => {
     response &&
       PnrDispatch({ type: dispatcherActions.SET_PNR, payload: response.data });
   };
+  const resetPnrDetails = () => {
+    id = LoadingToast(LoadingMessages.RESETTING_PNR);
+    PnrDispatch({ type: dispatcherActions.RESET_PNR });
+    PnrDetailsResetSuccess(id);
+  };
 
-  const data = { pnr, fetchPnrStatus };
+  const data = { pnr, fetchPnrStatus, resetPnrDetails };
   return <PnrContext.Provider value={data}>{children}</PnrContext.Provider>;
 };
 
