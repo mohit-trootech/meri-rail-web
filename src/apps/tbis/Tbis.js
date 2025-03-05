@@ -24,6 +24,8 @@ const Tbis = () => {
   const { stations, fetchStations } = useContext(StationContext);
   useEffect(() => {
     fetchStations();
+    getTrainQuota();
+    getJourneyClass();
   }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,6 +35,7 @@ const Tbis = () => {
     event.preventDefault();
     fetchStations(`search=${event.target.value}`);
   };
+  const { getTrainQuota, getJourneyClass } = useContext(UtilsContext);
   return (
     <>
       {(preload && <Preloader />) || (
@@ -40,11 +43,11 @@ const Tbis = () => {
           <div className="hidden lg:block lg:col-span-2">
             <Sidebar />
           </div>
-          <div className="lg:col-span-7 col-span-9 h-screen overflow-auto mr-3">
+          <div className="lg:col-span-7 col-span-9 h-screen overflow-auto">
             <div className="md:hidden">
               <NavBarMobile />
             </div>
-            <div className="bg-base-100 min-h-screen overflow-auto">
+            <div className="bg-base-100 min-h-screen overflow-auto  px-2">
               <div className="flex flex-col justify-start md:ml-5 my-3 gap-y-5">
                 <div className="bg-base-300 flex justify-between items-center p-3 rounded-lg shadow-xl">
                   <h1 className="text-2xl">Train Between Station</h1>

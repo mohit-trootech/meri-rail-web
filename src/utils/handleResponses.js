@@ -41,3 +41,13 @@ export const tbisFetchedSuccess = (response, id) => {
   /**Handle TBIS Fetched Response */
   SuccessToast(id, ResponseMessages.TBIS_FETCHED);
 };
+
+export const seatAvailabilityFetchedSuccess = (response, id) => {
+  /**Handle Seat Availability Fetched Response */
+  SuccessToast(id, ResponseMessages.SEAT_AVAILABILITY_FETCHED);
+};
+
+export const fareFetchedSuccess = (response, id) => {
+  /**Handle Fare Details Fetched Response */
+  SuccessToast(id, ResponseMessages.FARE_DETAILS_FETCHED);
+};

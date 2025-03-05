@@ -19,3 +19,7 @@ export const TrainContext = createContext(null);
 export const TbisContext = createContext(null);
 
 export const StationContext = createContext(null);
+
+export const SeatAvailabilityContext = createContext(null);
+
+export const FareContext = createContext(null);

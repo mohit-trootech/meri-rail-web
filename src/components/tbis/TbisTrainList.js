@@ -1,5 +1,5 @@
 import React from "react";
-
+import TbisCard from "./TbisCard";
 const TbisTrainList = ({ tbis, handleSubmit, handleChange }) => {
   return (
     <>
@@ -7,7 +7,7 @@ const TbisTrainList = ({ tbis, handleSubmit, handleChange }) => {
         <form
           method="POST"
           onSubmit={handleSubmit}
-          className="flex flex-row items-center justify-between gap-2 w-full"
+          className="flex flex-col md:flex-row items-end md:items-center justify-between gap-2 w-full"
         >
           <input
             type="text"
@@ -30,6 +30,12 @@ const TbisTrainList = ({ tbis, handleSubmit, handleChange }) => {
           <input
             name="dt"
             type="date"
+            min={new Date().toISOString().split("T")[0]}
+            max={
+              new Date(new Date().setMonth(new Date().getMonth() + 4))
+                .toISOString()
+                .split("T")[0]
+            }
             placeholder="Date of Travel"
             defaultValue={tbis.dt}
             className="input input-bordered w-full input-primary input-xs"
@@ -49,61 +55,12 @@ const TbisTrainList = ({ tbis, handleSubmit, handleChange }) => {
                 (obj) => obj.train === train.train.number
               );
               return (
-                <>
-                  <div key={index} className="collapse rounded-none">
-                    <input
-                      type="radio"
-                      name="tbis-collapse"
-                      defaultChecked={index === 0}
-                    />
-                    <div className="collapse-title flex flex-row items-center justify-between gap-3 w-full border border-gray-700 hover:border-gray-600 shadow-lg hover:shadow-xl duration-300 transition p-3 rounded-xl bg-base-200">
-                      <div className="flex flex-row items-center justify-between gap-3 w-full">
-                        <div className="flex flex-col items-start justify-center gap-1">
-                          <p className="text-xl font-bold">
-                            {train.train.name} | {train.train.number}
-                          </p>
-                        </div>
-                        <div className="flex flex-row items-center justify-around gap-1">
-                          <div
-                            className="tooltip flex flex-row items-center justify-around gap-1"
-                            data-tip={train.station_from.name_hi}
-                          >
-                            <div className="btn bg-gray-900 text-white btn-sm">
-                              {train.station_from.name}
-                              <span className="badge badge-warning badge-xs">
-                                {train.station_from.code}
-                              </span>
-                            </div>
-                            <div className="flex flex-row items-center justify-around gap-1">
-                              <div className="btn btn-xs btn-success">
-                                {times.arrival || "SRC"}
-                              </div>
-                              <div className="btn btn-xs btn-error">
-                                {times.departure || "DEST"}
-                              </div>
-                            </div>
-                          </div>
-                          |
-                          <div
-                            className="tooltip"
-                            data-tip={train.station_to.name_hi}
-                          >
-                            <div className="btn bg-gray-900 text-white btn-sm">
-                              {train.station_to.name}
-                              <span className="badge badge-warning badge-xs">
-                                {train.station_to.code}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="collapse-content p-3 ">
-                      Click the "Sign Up" button in the top right corner and
-                      follow the registration process.
-                    </div>
-                  </div>
-                </>
+                <TbisCard
+                  key={index}
+                  index={index}
+                  train={train}
+                  times={times}
+                />
               );
             })}
           </div>

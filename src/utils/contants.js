@@ -58,6 +58,8 @@ export const LoadingMessages = {
   FETCHING_STATION_DETAILS: "Fetching Station Details...",
   RESETTING_STATION_DETAILS: "Resetting Station Details...",
   RESETTING_TBIS: "Resetting Available Trains...",
+  SEAT_AVAILABILITY_LOADING: "Fetching Seat Availability...",
+  FARE_DETAILS_LOADING: "Fetching Fare Details...",
 };
 
 export const ResponseMessages = {
@@ -73,4 +75,6 @@ export const ResponseMessages = {
   TBIS_FETCHED: "Available Train Details",
   TBIS_RESET: "Available Trains Reset Successfully",
   STATION_DETAILS_RESET: "Station Details Reset Successfully",
+  SEAT_AVAILABILITY_FETCHED: "Seat Availability Fetched Successfully",
+  FARE_DETAILS_FETCHED: "Fare Details Fetched Successfully",
 };
