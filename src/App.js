@@ -21,6 +21,9 @@ import Train from "./apps/trains/Train";
 import Tbis from "./apps/tbis/Tbis";
 import Stations from "./apps/stations/Stations";
 import Profile from "./apps/profile/Profile";
+import Docs from "./apps/docs/Docs";
+import UnAuthorized from "./apps/UnAuthorized";
+
 function App() {
   return (
     <BrowserRouter>
@@ -43,6 +46,8 @@ function App() {
                         <Route path="trains/" element={<Train />} />
                         <Route path="tbis/" element={<Tbis />} />
                         <Route path="stations/" element={<Stations />} />
+                        <Route path="/docs/" element={<Docs />} />
+                        <Route path="*" element={<UnAuthorized />} />
                       </Routes>
                     </PnrProvider>
                   </TbisProvider>
