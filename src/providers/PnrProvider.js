@@ -34,7 +34,7 @@ const PnrProvider = ({ children }) => {
   };
   const resetPnrDetails = () => {
     id = LoadingToast(LoadingMessages.RESETTING_PNR);
-    PnrDispatch({ type: dispatcherActions.RESET_PNR });
+    PnrDispatch({ type: dispatcherActions.RESET_DETAILS });
     PnrDetailsResetSuccess(id);
   };
 

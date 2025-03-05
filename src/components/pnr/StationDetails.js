@@ -1,4 +1,5 @@
-import { useEffect, useState, useRef } from "react";
+/* eslint-disable */
+import { useRef, useState, useEffect, useCallback } from "react";
 import { GetRequest } from "../../utils/AxiosRequest";
 import { getBearerToken } from "../../utils/utils";
 import { BaseUrlPath } from "../../utils/contants";
@@ -12,12 +13,23 @@ const StationDetails = ({ pnr }) => {
   const mapRef = useRef(null);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
   const [mapplsToken, setMapplsToken] = useState(null);
-  useEffect(() => {
-    async function getMapplsToken() {
+
+  const getMapplsToken = useCallback(async () => {
+    try {
       const response = await GetRequest(BaseUrlPath + API_URL, getBearerToken);
-      response && setMapplsToken(response.data.token);
+      if (response) {
+        setMapplsToken(response.data.token);
+      }
+    } catch (error) {
+      console.error("Failed to fetch Mappls token:", error);
     }
+  }, []);
+
+  useEffect(() => {
     getMapplsToken();
+  }, []);
+
+  useEffect(() => {
     const loadObject = {
       map: true,
       layer: "raster",
@@ -41,34 +53,70 @@ const StationDetails = ({ pnr }) => {
             {
               type: "Feature",
               properties: {
-                description: "aburoad",
-                icon: "https://apis.mapmyindia.com/map_v3/1.png",
+                description: `
+          <div className="flex flex-col gap-3 items-start justify-center">
+            <div className="flex flex-row items-center justify-start gap-2">
+              ${pnr.source.name}
+              <span className="badge badge-xs badge-primary">${pnr.source.code}</span>
+            </div>
+            <p className="text-sm font-semibold">${pnr.source.name_hi}</p>
+            <p className="text-xs font-semibold">${pnr.source.address}</p>
+          </div>
+        `,
+                icon: "https://apis.mapmyindia.com/map_v3/2.png",
               },
               geometry: {
                 type: "Point",
-                coordinates: [24.470775, 72.775695],
+                coordinates: [
+                  parseFloat(pnr.source.latitude),
+                  parseFloat(pnr.source.longitude),
+                ],
               },
             },
             {
               type: "Feature",
               properties: {
-                description: "faridabad",
-                icon: "https://apis.mapmyindia.com/map_v3/1.png",
+                description: `
+          <div className="flex flex-col gap-3 items-start justify-center">
+            <div className="flex flex-row items-center justify-start gap-2">
+              ${pnr.destination.name}
+              <span className="badge badge-xs badge-primary">${pnr.destination.code}</span>
+            </div>
+            <p className="text-sm font-semibold">${pnr.destination.name_hi}</p>
+            <p className="text-xs font-semibold">${pnr.destination.address}</p>
+          </div>
+        `,
+                icon: "https://apis.mapmyindia.com/map_v3/2.png",
               },
               geometry: {
                 type: "Point",
-                coordinates: [28.27189158, 77.2158203125],
+                coordinates: [
+                  parseFloat(pnr.destination.latitude),
+                  parseFloat(pnr.destination.longitude),
+                ],
               },
             },
             {
               type: "Feature",
               properties: {
-                description: "delhi",
-                icon: "https://apis.mapmyindia.com/map_v3/1.png",
+                description: `
+          <div className="flex flex-col gap-3 items-start justify-center">
+            <div className="flex flex-row items-center justify-start gap-2">
+              ${pnr.boarding.name}
+              <span className="badge badge-xs badge-primary">${pnr.boarding.code}</span>
+            </div>
+            <p className="text-sm font-semibold">${pnr.boarding.name_hi}</p>
+            <p className="text-xs font-semibold">${pnr.boarding.address}</p>
+          </div>
+        `,
+                icon: "https://apis.mapmyindia.com/map_v3/2.png",
               },
               geometry: {
                 type: "Point",
-                coordinates: [28.549511, 77.267825],
+                coordinates: [
+                  parseFloat(pnr.boarding.latitude),
+                  parseFloat(pnr.boarding.longitude),
+                ],
               },
             },
           ],
