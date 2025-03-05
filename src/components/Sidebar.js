@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { MdOutlineLogin } from "react-icons/md";
 import { AuthContext } from "../context/Context";
 import SidebarContent from "./SidebarContent";
+import noProfile from "../static/img/no-profile.webp";
 const Sidebar = () => {
   const { user, logOutHandler } = useContext(AuthContext);
   return (
@@ -22,7 +23,7 @@ const Sidebar = () => {
                   <div className="flex flex-row justify-start items-center w-full gap-3">
                     <img
                       className="rounded-full w-8 h-8"
-                      src={user.image}
+                      src={user.image || noProfile}
                       alt="avatar"
                     />
                     <div className="flex flex-col justify-center items-start truncate">
