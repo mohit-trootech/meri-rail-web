@@ -29,6 +29,7 @@ const TbisTrainList = ({ tbis, handleSubmit, handleChange }) => {
           />
           <input
             name="dt"
+            required={true}
             type="date"
             min={new Date().toISOString().split("T")[0]}
             max={

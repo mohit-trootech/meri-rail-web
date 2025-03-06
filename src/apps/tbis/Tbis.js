@@ -128,6 +128,7 @@ const Tbis = () => {
                           <div className="flex flex-row justify-end items-center w-full">
                             <input
                               name="dt"
+                              required={true}
                               type="date"
                               min={new Date().toISOString().split("T")[0]}
                               max={

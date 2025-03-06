@@ -12,7 +12,7 @@ import {
 import { getBearerToken } from "../utils/utils";
 import { GetRequest, PostRequest, PatchRequest } from "../utils/AxiosRequest";
 import { LoadingToast } from "../utils/ToastMessage";
-import { handleLogin } from "../utils/handleResponses";
+import { handleLogin, profileUpdateSuccess } from "../utils/handleResponses";
 import { LogOut } from "../utils/LogOut";
 const LOGIN_PATH = "auth/google/login/";
 const GOOGLE_INIT = "auth/google/init/";
@@ -37,10 +37,13 @@ const AuthProvider = ({ children }) => {
     }
   };
   const updateUserDetails = async (data) => {
+    id = LoadingToast(LoadingMessages.PROFILE_UPDATE);
     const response = await PatchRequest(
       BaseUrlPath + USER_DETAILS + user.id + "/",
       data,
-      getBearerToken
+      getBearerToken,
+      profileUpdateSuccess,
+      id
     );
     response && setDetails(response.data);
     response && authenticatedUser();

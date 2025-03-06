@@ -49,6 +49,7 @@ export const LoadingMessages = {
   LOGIN: "Logging In...",
   LOGOUT: "Logging Out...",
   REGISTER: "Registering User...",
+  PROFILE_UPDATE: "Updating Profile...",
   FORGOT_PASSWORD: "Sending Password Reset Link...",
   PASSWORD_CHANGED: "Changing Password...",
   FETCHING_PNR: "Fetching PNR Status...",
@@ -64,6 +65,7 @@ export const LoadingMessages = {
 
 export const ResponseMessages = {
   PNR_FETCHED: "PNR Details Fetched Successfully",
+  PROFILE_UPDATE_SUCCESS: "Profile Updated Successfully",
   LOGIN_SUCCESS: "Login Successful",
   LOGOUT_SUCCESS: "Logged Out Successfully",
   REGISTER_SUCCESS: "Registered Successfully",

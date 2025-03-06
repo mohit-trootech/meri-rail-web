@@ -4,6 +4,7 @@ const UpdateDetails = ({ details, updateUserDetails }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     updateUserDetails(new FormData(e.target));
+    document.getElementById("user_details_update").close();
   };
   return (
     <dialog id="user_details_update" className="modal">

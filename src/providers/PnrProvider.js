@@ -1,5 +1,5 @@
 import { PnrContext } from "../context/Context";
-import { useEffect, useReducer } from "react";
+import { useReducer } from "react";
 import { PostRequest } from "../utils/AxiosRequest";
 import { PnrReducer } from "../reducers/PnrReducers";
 import {
