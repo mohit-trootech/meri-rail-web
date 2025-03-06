@@ -9,7 +9,10 @@ export const handleLogin = (response, id) => {
   updateLocalStorage("refresh", response.refresh);
   SuccessToast(id, ResponseMessages.LOGIN_SUCCESS, "/");
 };
-
+export const profileUpdateSuccess = (response, id) => {
+  /**Handle Profile Update Response */
+  SuccessToast(id, ResponseMessages.PROFILE_UPDATE_SUCCESS);
+};
 export const handleRegister = (response, id) => {
   /**Handle Register Response */
   SuccessToast(id, ResponseMessages.REGISTER_SUCCESS, "/auth/login/");
