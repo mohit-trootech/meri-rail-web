@@ -4,7 +4,7 @@ import { GetRequest } from "../utils/AxiosRequest";
 import { FirebaseContext } from "../context/Context";
 import { BaseUrlPath } from "../utils/contants";
 import { initializeApp } from "firebase/app";
-import { collection, addDoc, onSnapshot, doc } from "firebase/firestore";
+import { collection, addDoc, onSnapshot } from "firebase/firestore";
 import { getBearerToken } from "../utils/utils";
 const FIRESTORE_SECRET_PATH = "api/secrets/firestore/";
 

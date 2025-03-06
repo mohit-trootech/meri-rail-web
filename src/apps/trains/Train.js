@@ -77,7 +77,7 @@ const Train = () => {
                       autoCorrect="off"
                       autoCapitalize="off"
                       list="trains-datalist"
-                      required="true"
+                      required={true}
                       onChange={handleChange}
                       placeholder="Enter Train Code"
                       className="join-item input input-sm input-secondary input-bordered uppercase"

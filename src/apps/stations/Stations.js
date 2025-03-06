@@ -81,7 +81,7 @@ const Stations = () => {
                       autoCapitalize="off"
                       list="stations-datalist"
                       onChange={handleChange}
-                      required="true"
+                      required={true}
                       placeholder="Enter Station Name / Code"
                       className="join-item input input-sm input-secondary input-bordered uppercase"
                     />

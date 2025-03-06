@@ -9,6 +9,7 @@ const mapplsClassObject = new mappls();
 
 const TrainRoute = ({ route }) => {
   const mapRef = useRef(null);
+  const [isMapLoaded, setIsMapLoaded] = useState(false);
   const [mapplsToken, setMapplsToken] = useState(null);
 
   const getMapplsToken = useCallback(async () => {
@@ -23,10 +24,12 @@ const TrainRoute = ({ route }) => {
   }, []);
 
   const mapPoints = useMemo(() => {
-    return route.map((item) => ({
-      type: "Feature",
-      properties: {
-        description: `
+    try {
+      if (route) {
+        return route.map((item) => ({
+          type: "Feature",
+          properties: {
+            description: `
           <div className="flex flex-col gap-3 items-start justify-center">
             <div className="flex flex-row items-center justify-start gap-2">
               ${item.station.name}
@@ -36,16 +39,20 @@ const TrainRoute = ({ route }) => {
             <p className="text-xs font-semibold">${item.station.address}</p>
           </div>
         `,
-        icon: "https://apis.mapmyindia.com/map_v3/2.png",
-      },
-      geometry: {
-        type: "Point",
-        coordinates: [
-          parseFloat(item.station.latitude),
-          parseFloat(item.station.longitude),
-        ],
-      },
-    }));
+            icon: "https://apis.mapmyindia.com/map_v3/2.png",
+          },
+          geometry: {
+            type: "Point",
+            coordinates: [
+              parseFloat(item.station.latitude),
+              parseFloat(item.station.longitude),
+            ],
+          },
+        }));
+      }
+    } catch (error) {
+      console.error("Failed to process route data:", error);
+    }
   }, [route]);
 
   useEffect(() => {
@@ -53,40 +60,47 @@ const TrainRoute = ({ route }) => {
   }, [getMapplsToken]);
 
   useEffect(() => {
-    const loadObject = {
-      map: true,
-      layer: "raster",
-      version: "3.0",
-      libraries: ["polydraw"],
-      plugins: ["direction"],
-    };
-    if (mapplsToken) {
-      mapplsClassObject.initialize(mapplsToken, loadObject, () => {
-        const newMap = mapplsClassObject.Map({
-          id: "map",
-          properties: {
-            center: [28.61, 77.23],
-            zoomControl: true,
-            location: true,
-          },
-        });
-        const geoData = {
-          type: "FeatureCollection",
-          features: mapPoints,
-        };
-        mapplsClassObject.addGeoJson({
-          map: newMap,
-          data: geoData,
-          icon_url: "https://apis.mapmyindia.com/map_v3/1.png",
-          fitbounds: true,
-        });
-        mapRef.current = newMap;
-      });
-      return () => {
-        if (mapRef.current) {
-          mapRef.current.remove();
-        }
+    try {
+      const loadObject = {
+        map: true,
+        layer: "raster",
+        version: "3.0",
+        libraries: ["polydraw"],
+        plugins: ["direction"],
       };
+      if (mapplsToken) {
+        mapplsClassObject.initialize(mapplsToken, loadObject, () => {
+          const newMap = mapplsClassObject.Map({
+            id: "map",
+            properties: {
+              center: [28.61, 77.23],
+              zoomControl: true,
+              location: true,
+            },
+          });
+          const geoData = {
+            type: "FeatureCollection",
+            features: mapPoints,
+          };
+          mapplsClassObject.addGeoJson({
+            map: newMap,
+            data: geoData,
+            icon_url: "https://apis.mapmyindia.com/map_v3/1.png",
+            fitbounds: true,
+          });
+          newMap.on("load", () => {
+            setIsMapLoaded(true);
+          });
+          mapRef.current = newMap;
+        });
+        return () => {
+          if (mapRef.current) {
+            mapRef.current.remove();
+          }
+        };
+      }
+    } catch (error) {
+      console.error("Failed to load Mappls:", error);
     }
   }, [mapplsToken, mapPoints]);
 
@@ -101,7 +115,9 @@ const TrainRoute = ({ route }) => {
           </form>
           <h3 className="font-bold text-lg">Map Route!</h3>
           <div className="py-4">
-            <div id="map" className="w-full h-96"></div>
+            <div id="map" className="w-full h-96">
+              {isMapLoaded}
+            </div>
           </div>
         </div>
       </dialog>

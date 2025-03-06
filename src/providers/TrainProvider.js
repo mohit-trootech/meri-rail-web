@@ -13,7 +13,6 @@ import {
   trainDetailsFetchedSuccess,
   TrainDetailsResetSuccess,
 } from "../utils/handleResponses";
-
 const FETCH_TRAIN_PATH = "api/trains/";
 
 const TrainProvider = ({ children }) => {

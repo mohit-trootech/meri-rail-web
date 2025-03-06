@@ -11,7 +11,6 @@ import {
 } from "../utils/contants";
 import { LoadingToast, SuccessToast } from "../utils/ToastMessage";
 import { trainDetailsFetchedSuccess } from "../utils/handleResponses";
-
 const FETCH_STATION_PATH = "api/stations/";
 
 const StationProvider = ({ children }) => {

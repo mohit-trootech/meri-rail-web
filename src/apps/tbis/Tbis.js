@@ -100,8 +100,9 @@ const Tbis = () => {
                             <input
                               name="from_station"
                               type="text"
-                              pattern="^[A-Za-z]{3}$"
+                              pattern="^[A-Za-z]{2,5}$"
                               autoComplete="off"
+                              required={true}
                               autoCorrect="off"
                               autoCapitalize="off"
                               list="stations-datalist"
@@ -113,9 +114,10 @@ const Tbis = () => {
                             <input
                               name="to_station"
                               type="text"
-                              pattern="^[A-Za-z]{3}$"
+                              pattern="^[A-Za-z]{2,5}$"
                               autoComplete="off"
                               autoCorrect="off"
+                              required={true}
                               autoCapitalize="off"
                               list="stations-datalist"
                               onChange={handleChange}

@@ -2,8 +2,6 @@ import React from "react";
 import { FaMapMarkedAlt } from "react-icons/fa";
 
 const StationDetails = ({ station }) => {
-  console.log(station);
-
   return (
     <>
       <div className="card bordered shadow-lg w-full bg-base-300 text-base-content mt-4 p-4 rounded-lg hover:shadow-xl flex flex-col justify-center items-start gap-5">

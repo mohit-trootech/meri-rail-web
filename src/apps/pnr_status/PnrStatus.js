@@ -55,6 +55,7 @@ const PnrStatus = () => {
                     <input
                       type="number"
                       pattern="^[0-9]{10}$"
+                      required={true}
                       placeholder="Enter your PNR number"
                       name="pnr"
                       className="input input-bordered input-sm w-full mb-5"
