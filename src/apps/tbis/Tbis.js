@@ -33,7 +33,7 @@ const Tbis = () => {
   };
   const handleChange = (event) => {
     event.preventDefault();
-    fetchStations(`search=${event.target.value}`);
+    fetchStations(`?search=${event.target.value}`);
   };
   const { getTrainQuota, getJourneyClass } = useContext(UtilsContext);
   return (
@@ -98,7 +98,6 @@ const Tbis = () => {
                         <div className="flex flex-col gap-y-3">
                           <div className="flex flex-row gap-y-3 w-full justify-between items-center gap-3">
                             <input
-                              defaultValue="ADI"
                               name="from_station"
                               type="text"
                               pattern="^[A-Za-z]{3}$"
@@ -108,11 +107,10 @@ const Tbis = () => {
                               list="stations-datalist"
                               onChange={handleChange}
                               placeholder="Enter Train Code"
-                              className="input input-sm input-secondary input-bordered w-full"
+                              className="input input-sm input-secondary input-bordered w-full uppercase"
                             />
                             <FaArrowsLeftRight className="w-8 h-8 text-primary" />
                             <input
-                              defaultValue="ABR"
                               name="to_station"
                               type="text"
                               pattern="^[A-Za-z]{3}$"
@@ -122,7 +120,7 @@ const Tbis = () => {
                               list="stations-datalist"
                               onChange={handleChange}
                               placeholder="Enter Train Code"
-                              className="input input-sm input-secondary input-bordered w-full"
+                              className="input input-sm input-secondary input-bordered w-full uppercase"
                             />
                           </div>
                           <div className="flex flex-row justify-end items-center w-full">

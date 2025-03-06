@@ -2,11 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaArrowsTurnToDots, FaBell, FaBuilding } from "react-icons/fa6";
 import { MdOutlineRailwayAlert } from "react-icons/md";
-
+import bgGif from "../../static/img/train-vector-lofi-2.gif";
 const Service = () => {
   return (
-    <section className="hero min-h-screen bg-base-300 flex items-center justify-center p-14">
-      <div className="container mx-auto">
+    <section
+      className="hero min-h-screen"
+      style={{ backgroundImage: `url(${bgGif})` }}
+    >
+      <div className="hero-overlay bg-opacity-60"></div>
+      <div className="container mx-auto p-14">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
             <div className="mx-auto mb-12 max-w-[510px] text-center lg:mb-20">
@@ -59,7 +63,7 @@ const ServiceCard = ({ icon, title, details, link }) => {
   return (
     <>
       <Link to={link} className="w-full px-4 md:w-1/2 lg:w-1/3 cursor-pointer">
-        <div className="mb-9 rounded-xl p-10 shadow-md hover:shadow-lg transition border border-gray-500 hover:border-primary h-full">
+        <div className="mb-9 rounded-xl p-10 shadow-md hover:shadow-lg transition border border-gray-500 hover:border-primary h-full  bg-base-300">
           <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl bg-primary">
             {icon}
           </div>

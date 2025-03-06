@@ -3,8 +3,8 @@ import noProfile from "../../static/img/no-profile.webp";
 import UpdateDetails from "./UpdateDetails";
 const UserProfile = ({ details, updateUserDetails }) => {
   return (
-    <section class="p-4 flex flex-col gap-y-14">
-      <div class="flex flex-row justify-between items-center w-full">
+    <section className="p-4 flex flex-col gap-y-14">
+      <div className="flex flex-row justify-between items-center w-full">
         <h1 className="font-bold text-xl uppercase">User Details</h1>
         <div
           className="tooltip tooltip-left"
@@ -24,7 +24,7 @@ const UserProfile = ({ details, updateUserDetails }) => {
           />
         </div>
       </div>
-      <div class="card bg-base-300 shadow-lg w-full rounded-lg hover:shadow-xl transition duration-500 ease-in-out p-2 gap-2 container w-1/2 mx-auto">
+      <div className="card bg-base-300 shadow-lg w-full rounded-lg hover:shadow-xl transition duration-500 ease-in-out p-2 gap-2 container w-1/2 mx-auto">
         {(details && (
           <>
             <div className="flex flex-row justify-center items-center w-full">

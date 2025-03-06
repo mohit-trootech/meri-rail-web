@@ -19,7 +19,9 @@ const Train = () => {
   }, []);
   const handleSubmit = (event) => {
     event.preventDefault();
-    trainDetailsFetching(event.target.number.value);
+
+    event.target.number.value &&
+      trainDetailsFetching(event.target.number.value);
   };
   const handleChange = (event) => {
     event.preventDefault();
@@ -75,9 +77,10 @@ const Train = () => {
                       autoCorrect="off"
                       autoCapitalize="off"
                       list="trains-datalist"
+                      required="true"
                       onChange={handleChange}
                       placeholder="Enter Train Code"
-                      className="join-item input input-sm input-secondary input-bordered"
+                      className="join-item input input-sm input-secondary input-bordered uppercase"
                     />
                     <TrainDatalist trains={trains} />
                     <button className="join-item btn btn-sm btn-primary">

@@ -8,7 +8,7 @@ const StationList = ({ stations, handleSubmit, fetchStations }) => {
   };
   return (
     <>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 border rounded-box shadow-lg transition duration-300 ease-in-out hover:shadow-xl p-3">
         <table className="table table-zebra shadow-xl">
           <thead>
             <tr>

@@ -4,7 +4,7 @@ import Sidebar from "../../components/Sidebar";
 import { useContext } from "react";
 import { PnrContext, UtilsContext } from "../../context/Context";
 import PnrDetails from "../../components/pnr/PnrDetails";
-import bgGif from "../../static/img/blue-sky-train.gif";
+import bgGif from "../../static/img/train-vector-lofi-1.gif";
 import Preloader from "../../components/Preloader";
 import NavBarMobile from "../../components/NavBarMobile";
 

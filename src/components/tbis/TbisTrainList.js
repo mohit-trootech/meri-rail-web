@@ -16,7 +16,7 @@ const TbisTrainList = ({ tbis, handleSubmit, handleChange }) => {
             placeholder="From Station"
             defaultValue={tbis.from_station}
             list="stations-datalist"
-            className="input input-bordered w-full input-primary input-xs"
+            className="input input-bordered w-full input-primary input-sm uppercase"
           />
           <input
             type="text"
@@ -25,7 +25,7 @@ const TbisTrainList = ({ tbis, handleSubmit, handleChange }) => {
             placeholder="To Station"
             defaultValue={tbis.to_station}
             list="stations-datalist"
-            className="input input-bordered w-full input-primary input-xs"
+            className="input input-bordered w-full input-primary input-sm uppercase"
           />
           <input
             name="dt"
@@ -38,7 +38,7 @@ const TbisTrainList = ({ tbis, handleSubmit, handleChange }) => {
             }
             placeholder="Date of Travel"
             defaultValue={tbis.dt}
-            className="input input-bordered w-full input-primary input-xs"
+            className="input input-bordered w-full input-primary input-sm "
           />
           <button
             type="submit"

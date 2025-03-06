@@ -24,7 +24,7 @@ const Stations = () => {
   }, []);
   const handleSubmit = (event) => {
     event.preventDefault();
-    stationDetailsFetching(event.target.code.value);
+    event.target.code.value && stationDetailsFetching(event.target.code.value);
   };
   const handleChange = (e) => {
     e.preventDefault();
@@ -75,14 +75,15 @@ const Stations = () => {
                     <input
                       name="code"
                       type="text"
-                      pattern="^[A-Za-z]$"
+                      pattern="^[A-Za-z]{2,5}$"
                       autoComplete="off"
                       autoCorrect="off"
                       autoCapitalize="off"
                       list="stations-datalist"
                       onChange={handleChange}
+                      required="true"
                       placeholder="Enter Station Name / Code"
-                      className="join-item input input-sm input-secondary input-bordered"
+                      className="join-item input input-sm input-secondary input-bordered uppercase"
                     />
                     <StationDatalist stations={stations} />
                     <button className="join-item btn btn-sm btn-primary">
