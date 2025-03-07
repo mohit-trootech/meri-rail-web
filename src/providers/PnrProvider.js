@@ -7,7 +7,6 @@ import {
   dispatcherActions,
   LoadingMessages,
 } from "../utils/contants";
-import { getBearerToken } from "../utils/utils";
 import { LoadingToast } from "../utils/ToastMessage";
 import {
   PnrDetailsFetchedSuccess,
@@ -25,7 +24,7 @@ const PnrProvider = ({ children }) => {
     const response = await PostRequest(
       BaseUrlPath + FETCH_API,
       data,
-      getBearerToken,
+      null,
       PnrDetailsFetchedSuccess,
       id
     );

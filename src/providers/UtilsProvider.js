@@ -6,7 +6,7 @@ const UtilsProvider = ({ children }) => {
   const [toggle, setToggle] = useState(false);
   const [previous, setPrevious] = useState(null);
   const [next, setNext] = useState(null);
-  const [preload, setPreload] = useState(true);
+  const [preload, setPreload] = useState(false);
   const [quota, setQuotas] = useState(null);
   const [journeyClass, setJourneyClass] = useState(null);
 

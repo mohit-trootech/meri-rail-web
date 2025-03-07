@@ -71,11 +71,11 @@ const AuthProvider = ({ children }) => {
       });
   };
 
-  useEffect(() => {
-    if (!IGNORE_URL_PATHS.includes(window.location.pathname)) {
-      authenticatedUser();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!IGNORE_URL_PATHS.includes(window.location.pathname)) {
+  //     authenticatedUser();
+  //   }
+  // }, []);
   const googleAuthLogin = async (data) => {
     id = LoadingToast(LoadingMessages.LOGIN);
     const response = await PostRequest(

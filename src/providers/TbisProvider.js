@@ -10,7 +10,6 @@ import {
 import { tbisFetchedSuccess } from "../utils/handleResponses";
 import { PostRequest } from "../utils/AxiosRequest";
 import { LoadingToast, SuccessToast } from "../utils/ToastMessage";
-import { getBearerToken } from "../utils/utils";
 const TBIS_URL = "api/tbis/";
 
 const TbisProvider = ({ children }) => {
@@ -28,7 +27,7 @@ const TbisProvider = ({ children }) => {
     const res = await PostRequest(
       BaseUrlPath + TBIS_URL,
       data,
-      getBearerToken,
+      null,
       tbisFetchedSuccess,
       id
     );

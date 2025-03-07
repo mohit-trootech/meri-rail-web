@@ -4,7 +4,6 @@ import { BaseUrlPath, LoadingMessages } from "../utils/contants";
 import { PostRequest } from "../utils/AxiosRequest";
 import { LoadingToast } from "../utils/ToastMessage";
 import { seatAvailabilityFetchedSuccess } from "../utils/handleResponses";
-import { getBearerToken } from "../utils/utils";
 const SEAT_AVAILABILITY_URL = "api/seat-availability/";
 
 const SeatAvailabilityProvider = ({ children }) => {
@@ -15,7 +14,7 @@ const SeatAvailabilityProvider = ({ children }) => {
     const res = await PostRequest(
       BaseUrlPath + SEAT_AVAILABILITY_URL,
       data,
-      getBearerToken,
+      null,
       seatAvailabilityFetchedSuccess,
       id
     );

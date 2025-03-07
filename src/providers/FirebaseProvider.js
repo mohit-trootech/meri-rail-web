@@ -5,7 +5,6 @@ import { FirebaseContext } from "../context/Context";
 import { BaseUrlPath } from "../utils/contants";
 import { initializeApp } from "firebase/app";
 import { collection, addDoc, onSnapshot } from "firebase/firestore";
-import { getBearerToken } from "../utils/utils";
 const FIRESTORE_SECRET_PATH = "api/secrets/firestore/";
 
 const FirebaseProvider = ({ children }) => {
@@ -13,10 +12,7 @@ const FirebaseProvider = ({ children }) => {
   const [db, setDb] = useState();
   const [data, setData] = useState([]);
   const getFirestoreConfiguration = async () => {
-    let response = await GetRequest(
-      BaseUrlPath + FIRESTORE_SECRET_PATH,
-      getBearerToken
-    );
+    let response = await GetRequest(BaseUrlPath + FIRESTORE_SECRET_PATH);
     response && setApp(initializeApp(response.data));
   };
 

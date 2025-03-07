@@ -1,7 +1,6 @@
 /* eslint-disable */
 import { useRef, useState, useEffect, useCallback } from "react";
 import { GetRequest } from "../../utils/AxiosRequest";
-import { getBearerToken } from "../../utils/utils";
 import { BaseUrlPath } from "../../utils/contants";
 import { mappls } from "mappls-web-maps";
 
@@ -16,7 +15,7 @@ const StationDetails = ({ pnr }) => {
 
   const getMapplsToken = useCallback(async () => {
     try {
-      const response = await GetRequest(BaseUrlPath + API_URL, getBearerToken);
+      const response = await GetRequest(BaseUrlPath + API_URL);
       if (response) {
         setMapplsToken(response.data.token);
       }
